@@ -2,11 +2,6 @@
 #include "RobotParameters.h"
 
 /*
-#ifndef GATE_H
-#define GATE_H
-#include <WPILib.h>
-#include "RobotParameter.h"
-
 class Gate
 {
 public:

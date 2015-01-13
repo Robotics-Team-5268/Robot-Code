@@ -4,22 +4,8 @@
 #include "Autonomous.h"
 
 
-/*TODO:
-* motors -
-* autonomous
-* teleop -
-* update period -
-* driving -
-* joystick -
-* initiate robot -
-* 2 solenoids
-* 2 front motors to pull in junk
-* 1 actuator
-* Make sure to #include everything needed
-* COMMENT ALL YOUR STUFF OR DEATH
+//TODO: see README.md
 
-Make sure to double check everything
-*/
 
 
 /**
@@ -36,9 +22,13 @@ class Robot: public IterativeRobot {
 	RobotDrive *myRobot; // robot drive system
 	Joystick stick; // only joystick
 
+	//old code for gyro
+	//AnalogChannel *m_gyrochannel;
+
 public:
 	Robot() :
-			myRobot(0, 1),	// initialize the RobotDrive to use motor controllers on ports 0 and 1
+			//may need to be commented out like in last years code
+			myRobot(0, 1),	//initialize the RobotDrive to use motor controllers on ports 0 and 1
 			stick(0)
 	{
 		//initiate robot
@@ -57,7 +47,9 @@ public:
 		myRobot->SetInvertedMotor(RobotDrive::kRearLeftMotor, true);
 		myRobot->SetInvertedMotor(RobotDrive::kRearRightMotor, false);
 
-
+		//old code for gyro
+		//m_gyrochannel = new AnalogChannel(_CHANNEL);
+		//m_gyro = new Gyro(m_gyrochannel);
 	}
 
 	private:
@@ -70,12 +62,20 @@ public:
 		}
 
 		void AutonomousInit() {
+
+			//old code
+			//m_autonomous->autonomousReset();
+			//m_gyro->Reset();
 		}
 
 		void AutonomousPeriodic() {
+			//old code
+			//m_autonomous->autonomousPeriodic();
 		}
 
 		void TeleopInit() {
+			//old code for gyro
+			//m_gyro->Reset();
 		}
 
 		void TeleopPeriodic() {
