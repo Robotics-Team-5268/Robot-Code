@@ -15,7 +15,8 @@
 * 2 solenoids
 * 2 front motors to pull in junk
 * 1 actuator
-* Make sure to include everything needed
+* Make sure to #include everything needed
+* COMMENT ALL YOUR STUFF OR DEATH
 
 Make sure to double check everything
 */
