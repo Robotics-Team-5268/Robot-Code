@@ -3,27 +3,20 @@
 #include "SmartDashBoard\Smartdashboard.h"
 #include "Autonomous.h"
 
-
 //TODO: see README.md
 
-
-
-/**
- * This is a demo program showing the use of the RobotDrive class.
- * The SampleRobot class is the base of a robot application that will automatically call your
- * Autonomous and OperatorControl methods at the right time as controlled by the switches on
- * the driver station or the field controls.
- *
- * WARNING: While it may look like a good choice to use for your code if you're inexperienced,
- * don't. Unless you know what you are doing, complex code will be much more difficult under
- * this system. Use IterativeRobot or Command-Based instead if you're new.
- */
 class Robot: public IterativeRobot {
 	RobotDrive *myRobot; // robot drive system
 	Joystick stick; // only joystick
 
 	//old code for gyro
 	//AnalogChannel *m_gyrochannel;
+
+	//Accelerometer
+	Accelerometer *accel;
+	double xVal;
+	double yVal;
+	double zVal;
 
 public:
 	Robot() :
@@ -50,19 +43,23 @@ public:
 		//old code for gyro
 		//m_gyrochannel = new AnalogChannel(_CHANNEL);
 		//m_gyro = new Gyro(m_gyrochannel);
+
+		//Accelerometer
+		accel = new BuiltInAccelerometer(Accelerometer:kRange_4G);
+		xVal = accel->GetX();
+		yVal = accel->GetY();
+		zVal = accel->GetZ();
 	}
 
 	private:
 		//look into this more, may not need it
-		//LiveWindow *lw;
+		LiveWindow *lw;
 
 		void RobotInit() {
-			//see above: LiveWindow *lw;
-			//lw = LiveWindow::GetInstance();
+			lw = LiveWindow::GetInstance();
 		}
 
 		void AutonomousInit() {
-
 			//old code
 			//m_autonomous->autonomousReset();
 			//m_gyro->Reset();
@@ -86,8 +83,7 @@ public:
 		}
 
 		void TestPeriodic() {
-			//see above: LiveWindow *lw;
-			//lw->Run();
+			lw->Run();
 		}
 };
 
