@@ -1,3 +1,6 @@
+#ifndef AUTONOMOUS_H
+#define AUTONOMOUS_H
+
 #include "WPILib.h"
 #include "RobotBase.h"
 #include "RobotParameters.h"
@@ -8,7 +11,7 @@ class autonomous {
   RobotDrive *m_robotDrive;
 
   //TODO SOMEBODY BETTER FIGURE OUT WHAT THIS IS AND COMMENT IT!!!!!!!!!
-  UINT32 m_autoPeriodicLoops;
+  unsigned int m_autoPeriodicLoops;
   //static const float Kp = 0.03;
 
   public:
@@ -33,4 +36,7 @@ class autonomous {
       m_autoPeriodicLoops++;
       m_robotDrive->SetSafetyEnabled(false);
       */
-}
+    }
+};
+
+#endif

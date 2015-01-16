@@ -1,3 +1,5 @@
+#ifndef ROBOT_PARAMETERS_H
+#define ROBOT_PARAMETERS_H
 #include "WPILib.h"
 #include "RobotBase.h"
 #include "RobotParameters.h"
@@ -31,3 +33,5 @@
 
 TODO organize and comment way better for this years stuff
 */
+
+#endif

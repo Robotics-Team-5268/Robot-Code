@@ -1,3 +1,4 @@
+#include "RobotBase.h"
 #include "WPILib.h"
 #include "RobotParameters.h"
 #include "SmartDashBoard\Smartdashboard.h"
@@ -9,6 +10,9 @@ class Robot: public IterativeRobot {
 	RobotDrive *myRobot; // robot drive system
 	Joystick stick; // only joystick
 
+
+	Talon *m_right;
+	Talon *m_left;
 	//old code for gyro
 	//AnalogChannel *m_gyrochannel;
 
@@ -18,22 +22,25 @@ class Robot: public IterativeRobot {
 	double yVal;
 	double zVal;
 
+
 public:
 	Robot() :
 			//may need to be commented out like in last years code
-			myRobot(0, 1),	//initialize the RobotDrive to use motor controllers on ports 0 and 1
+			//myRobot(0, 1),	//initialize the RobotDrive to use motor controllers on ports 0 and 1
 			stick(0)
 	{
 		//initiate robot
-		myRobot.SetExpiration(0.1);
-		myRobot = new RobotDrive(m_left, m_right);
-
-		//Set update period to sync with robot control packets (20ms nominal)
-		this->SetPeriod(0);
-
-		//set motors
 		m_left = new Talon(1);
 		m_right = new Talon(2);
+		myRobot = new RobotDrive(m_left, m_right);
+		myRobot->SetExpiration(0.1);
+
+
+		//Set update period to sync with robot control packets (20ms nominal)
+		//this->SetPeriod(0);
+
+		//set motors
+
 
 		myRobot->SetInvertedMotor(RobotDrive::kFrontLeftMotor, true);
 		myRobot->SetInvertedMotor(RobotDrive::kFrontRightMotor, false);
@@ -45,7 +52,7 @@ public:
 		//m_gyro = new Gyro(m_gyrochannel);
 
 		//Accelerometer
-		accel = new BuiltInAccelerometer(Accelerometer:kRange_4G);
+		accel = new BuiltInAccelerometer(Accelerometer::kRange_4G);
 		xVal = accel->GetX();
 		yVal = accel->GetY();
 		zVal = accel->GetZ();
@@ -54,7 +61,6 @@ public:
 	private:
 		//look into this more, may not need it
 		LiveWindow *lw;
-
 		void RobotInit() {
 			lw = LiveWindow::GetInstance();
 		}
