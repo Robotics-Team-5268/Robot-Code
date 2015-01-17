@@ -1,9 +1,18 @@
 #ifndef ROBOT_PARAMETERS_H
 #define ROBOT_PARAMETERS_H
+
 #include "WPILib.h"
 #include "RobotBase.h"
 #include "RobotParameters.h"
 #include "SmartDashBoard\Smartdashboard.h"
+
+#define GYRO_CHANNEL 1
+#define L_STICK_CHANNEL 2
+#define R_STICK_CHANNEL 3
+#define DRIVE_CONTROLLER_0_CHANNEL 4
+#define DRIVE_CONTROLLER_1_CHANNEL 5
+#define DRIVE_CONTROLLER_2_CHANNEL 6
+#define DRIVE_CONTROLLER_3_CHANNEL 7
 
 /*
 #define GATE_BUTTON 5 //LB top trigger

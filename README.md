@@ -1,11 +1,11 @@
 TODO:
 * Accelerometer
 * Gyro
-   * define gyro channel: AnalogChannel *m_gyrochannel;, m_gyrochannel = new AnalogChannel(GYRO_CHANNEL);
-   * define gyro: Gyro *m_gyro;, m_gyro = new Gyro(m_gyrochannel);
-* motors -
+   * define gyro channel -
+   * define gyro -
+   * 
 * autonomous
-   * gyro: m_autonomous = new autonomous(myRobot, m_gate, m_gyro);
+   * gyro -
    * accelerometer
    * ultrasonic distance
    * camera placement
@@ -16,8 +16,11 @@ TODO:
    * 1 actuator
    * driving -
    * joystick -
+   * Mecanum -
+   * Arcade drive -
 * update period -
 * initiate robot -
 * Make sure to #include everything needed
 * COMMENT ALL YOUR STUFF OR DEATH
 * Make sure to double check everything
+* NO POINTERS if possible
