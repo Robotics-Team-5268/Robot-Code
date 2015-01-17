@@ -3,7 +3,6 @@ TODO:
 * Gyro
    * define gyro channel -
    * define gyro -
-   * 
 * autonomous
    * gyro -
    * accelerometer
