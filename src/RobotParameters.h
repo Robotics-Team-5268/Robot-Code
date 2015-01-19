@@ -1,5 +1,4 @@
-#ifndef ROBOT_PARAMETERS_H
-#define ROBOT_PARAMETERS_H
+#pragma once
 
 #include "WPILib.h"
 #include "RobotBase.h"
@@ -42,5 +41,3 @@
 
 TODO organize and comment way better for this years stuff
 */
-
-#endif

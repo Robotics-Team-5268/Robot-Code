@@ -1,3 +1,5 @@
+#pragma once
+
 #include "WPILib.h"
 #include "RobotParameters.h"
 
@@ -41,5 +43,4 @@ ShooterCommand (ShooterIn);
 }
 }
 };
-TODO program and commment way better than last years
 */

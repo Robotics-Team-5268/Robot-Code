@@ -1,6 +1,9 @@
 #pragma once
 
 #include "WPILib.h"
+#include "RobotBase.h"
 #include "RobotParameters.h"
 
-//TODO research actuators and comment code
+class Encoder {
+   
+}

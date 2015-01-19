@@ -1,5 +1,4 @@
-#ifndef ARCADE_DRIVE_H
-#define ARCADE_DRIVE_H
+#pragma once
 
 #include "WPILib.h"
 #include "Robot.h"
@@ -13,5 +12,3 @@ private:
    RobotDrive drive;
    Robot &robot;
 };
-
-#endif
