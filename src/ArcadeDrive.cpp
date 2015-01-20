@@ -9,6 +9,6 @@
       drive.SetInvertedMotor(RobotDrive::kRearRightMotor, false);
    }
 
-   void ArcadeDrive::TeleopPeriodic() {
+   void ArcadeDrive::DrivingCode() {
       drive.ArcadeDrive(((robot.stickLeft.GetY()*4)/4), -((robot.stickLeft.GetX()*3)/4), false);
    }

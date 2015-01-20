@@ -7,7 +7,7 @@
 class ArcadeDrive: DriveSystem {
 public:
    explicit ArcadeDrive(Robot &);
-   virtual void TeleopPeriodic();
+   virtual void DrivingCode();
 private:
    RobotDrive drive;
    Robot &robot;

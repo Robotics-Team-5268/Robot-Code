@@ -4,5 +4,5 @@
 
 class DriveSystem {
 public:
-   virtual void TeleopPeriodic() = 0;
+  virtual void DrivingCode() = 0;
 };
