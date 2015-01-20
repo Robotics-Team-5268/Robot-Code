@@ -10,6 +10,7 @@ class Robot: public IterativeRobot {
 public:
    Robot();
 
+   Encoder encoder;
    Gyro gyro;
 
    Joystick stickLeft;
