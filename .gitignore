@@ -1,3 +1,5 @@
 #Not needed by anything except Eclipse, and Eclipse will automatically make one
 .settings
 Debug
+.cproject
+.project
