@@ -22,6 +22,7 @@ public:
    Talon driveControllerOne;
    Talon driveControllerTwo;
    Talon driveControllerThree;
+   Encoder test1;
    //0: left front, 1: right front, 2: left back, 3: right back
 
    virtual void RobotInit();
