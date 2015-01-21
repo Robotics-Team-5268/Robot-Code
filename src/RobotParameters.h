@@ -14,7 +14,7 @@
 #define DRIVE_CONTROLLER_0_CHANNEL 4
 #define DRIVE_CONTROLLER_1_CHANNEL 5
 #define DRIVE_CONTROLLER_2_CHANNEL 6
-#define DRIVE_CONTROLLER_3_CHANNEL 7
+#define DRIVE_CONTROLLER_3_CHANNEL 7 //Encoders-------------------------------
 #define ENCODER_0_A_CHANNEL 8
 #define ENCODER_0_B_CHANNEL 9
 #define ENCODER_1_A_CHANNEL 10
@@ -26,6 +26,7 @@
 
 #define ENCODER_ARM_A_CHANNEL 16//Arm Lift Encoder
 #define ENCODER_ARM_B_CHANNEL 17//Arm Lift Encoder
+//-----------------------------------------
 
 /*
 #define GATE_BUTTON 5 //LB top trigger

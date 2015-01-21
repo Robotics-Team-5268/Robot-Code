@@ -10,7 +10,6 @@ class Robot: public IterativeRobot {
 public:
    Robot();
 
-   Encoder encoder;
    Gyro gyro;
 
    Joystick stickLeft;
@@ -23,6 +22,9 @@ public:
    Talon driveControllerTwo;
    Talon driveControllerThree;
    //0: left front, 1: right front, 2: left back, 3: right back
+
+   //Encoders
+   Encoder test1; //RENAME VARIABLE!!!!
 
    virtual void RobotInit();
    virtual void AutonomousInit();
