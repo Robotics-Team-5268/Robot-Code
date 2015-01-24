@@ -2,6 +2,7 @@
 
 #include "RobotBase.h"
 #include "WPILib.h"
+#include "Encoder.h"
 #include "RobotParameters.h"
 #include "SmartDashBoard\Smartdashboard.h"
 #include "Autonomous.h"
