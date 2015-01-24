@@ -9,12 +9,14 @@
 class Autonomous {
   //TODO SOMEBODY BETTER FIGURE OUT WHAT THIS IS AND COMMENT IT!!!!!!!!!
   int autoPeriodicLoops;
-  const float Kp = 0.03;
+  //const float Kp = 0.03;
 
   public:
-    Autonomous();
+    Autonomous(Robot &);
 
     void autonomousReset(void);
 
     void autonomousPeriodic(void);
+
+    double totalDistance = 0;
 };

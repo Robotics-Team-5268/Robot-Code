@@ -7,8 +7,10 @@ TODO:
    * define gyro channel -
    * define gyro -
 * autonomous
+   * State machines
+   * save point
    * coordinate with other teams for strategy
-   * gyro - kinda done
+   * gyro
    * accelerometer
    * ultrasonic distance
    * camera
