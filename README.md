@@ -8,6 +8,12 @@ TODO:
    * define gyro -
 * autonomous
    * State machines
+   * Create functions:
+      * Move(float distance) - Tyler Schunk
+      * Rotate(int degrees, bool leftRight) - Paul Stuckey
+      * Pickup() - Not enough info
+      * Drop() - Not enough info
+      * FindTote() - Vision processing people
    * save point
    * coordinate with other teams for strategy
    * gyro
