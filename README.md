@@ -10,7 +10,7 @@ TODO:
    * State machines
    * Create functions:
       * Move(float distance) - Tyler Schunk
-      * Rotate(int degrees, bool leftRight) - Paul Stuckey
+      * Rotate(int degree) - Jeremiah Miller
       * Pickup() - Not enough info
       * Drop() - Not enough info
       * FindTote() - Vision processing people
@@ -19,7 +19,7 @@ TODO:
    * gyro
    * accelerometer
    * ultrasonic distance
-   * camera
+   * camera - Ben, Micheal, everyone who doesn't have a job
 * teleop
    * 2 solenoids
    * 2 front motors to pull in junk

@@ -8,6 +8,7 @@ class MecanumDrive: DriveSystem {
 public:
    explicit MecanumDrive(Robot &);
    virtual void DrivingCode();
+   virtual bool rotate(PIDOutput&);
 private:
    RobotDrive drive;
    Robot &robot;

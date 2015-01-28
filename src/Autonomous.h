@@ -3,20 +3,26 @@
 #include "WPILib.h"
 #include "RobotBase.h"
 #include "DriveSystem.h"
+#include <PIDController.h>
 #include "RobotParameters.h"
 #include "SmartDashBoard\Smartdashboard.h"
 
 class Autonomous {
-  //TODO SOMEBODY BETTER FIGURE OUT WHAT THIS IS AND COMMENT IT!!!!!!!!!
-  int autoPeriodicLoops;
-  //const float Kp = 0.03;
+   //TODO SOMEBODY BETTER FIGURE OUT WHAT THIS IS AND COMMENT IT!!!!!!!!!
+   int autoPeriodicLoops;
 
-  public:
-    Autonomous(Robot &);
+public:
+   Autonomous(Robot &);
+   void autonomousReset(void);
+   void autonomousPeriodic(void);
+private:
+   PIDOutput output;
+   PIDController PIDgyro;
 
-    void autonomousReset(void);
+   bool trackDist();
+   bool rotate(int degree);
 
-    void autonomousPeriodic(void);
-
-    double totalDistance = 0;
+   double xDist;
+   double yDist;
+   double hypDist;
 };
