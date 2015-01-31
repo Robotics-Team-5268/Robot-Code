@@ -2,6 +2,6 @@
 
 #include "AutonomousAction.h"
 
-class Move: AutonomousAction {
+class Move : public AutonomousAction {
    virtual bool operator()();
-}
+};

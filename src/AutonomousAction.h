@@ -10,5 +10,7 @@
 #include "Rotate.h"
 
 class AutonomousAction {
-   virtual bool operator()() = 0;
+	AutonomousAction();
+	virtual ~AutonomousAction();
+    virtual bool operator()(Robot&) = 0;
 };

@@ -1,4 +1,5 @@
 #include "MecanumDrive.h"
+#include "Autonomous.h"
 
    MecanumDrive::MecanumDrive(Robot &robotRef):
    robot(robotRef),
@@ -10,6 +11,6 @@
       drive.MecanumDrive_Cartesian(robot.stickLeft.GetX(), robot.stickLeft.GetY(), robot.stickRight.GetX(), robot.gyro.GetAngle());
    }
 
-   void MecanumDrive::rotate(PIDOutput& output) {
-      drive.MecanumDrive_Cartesian(0, 0, output, robot.gyro.GetAngle());
+   void MecanumDrive::rotate(float pidOutput) {
+      drive.MecanumDrive_Cartesian(0, 0, pidOutput, robot.gyro.GetAngle());
    }

@@ -1,16 +1,15 @@
 #include "Autonomous.h"
-
+#include "Robot.h"
 
 Autonomous::Autonomous(Robot &robotRef):
 
 robot(robotRef),
 
-output(),
-PIDgyro(0.1, 0.001, 0.0, robot.gyro, output) //possibly need to change the numbers
+gyroOut(),
+PIDgyro(0.1, 0.001, 0.0, robot.gyro, gyroOut), //possibly need to change the numbers
+actions({Rotate(0.0)})
 {
    PIDgyro.SetOutputRange(-1.0, 1.0);
-   PIDgyro.SetSetpoint(degree);
-   PIDgyro.Enable();
 }
 
 void Autonomous::autonomousPeriodic(void) {
@@ -21,8 +20,8 @@ void Autonomous::autonomousReset(void) {
    autoPeriodicLoops = 0;
 }
 
-bool Autonomous::rotate(int degree) {
-   robot.drive.rotate(&output);
+bool Autonomous::rotate(float degree) {
+   //robot.drive.rotate(degree);
 
    return PIDgyro.OnTarget();
 }

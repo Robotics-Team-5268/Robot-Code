@@ -52,5 +52,7 @@ private:
    double xDist;
    double yDist;
    double hypDist;
+
+   AutonomousAction actions[];
 };
 

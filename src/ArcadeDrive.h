@@ -8,7 +8,7 @@ class ArcadeDrive: DriveSystem {
 public:
    explicit ArcadeDrive(Robot &);
    virtual void DrivingCode();
-   virtual void rotate(PIDOutput&);
+   virtual void rotate(float);
 private:
    RobotDrive drive;
    Robot &robot;
