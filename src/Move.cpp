@@ -1,5 +1,5 @@
 #include "Move.h"
 
-bool Move::operator()(){
-
+bool Move::operator()(Robot&){
+	return false;
 }

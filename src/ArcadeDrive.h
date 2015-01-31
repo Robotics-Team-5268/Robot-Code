@@ -4,12 +4,13 @@
 #include "Robot.h"
 #include "DriveSystem.h"
 
-class ArcadeDrive: DriveSystem {
+class ArcadeDrive: public DriveSystem {
 public:
    explicit ArcadeDrive(Robot &);
+   virtual ~ArcadeDrive();
    virtual void DrivingCode();
    virtual void rotate(float);
 private:
-   RobotDrive drive;
    Robot &robot;
+   RobotDrive drive;
 };

@@ -2,6 +2,9 @@
 
 #include "AutonomousAction.h"
 
+
+
 class Move : public AutonomousAction {
-   virtual bool operator()();
+
+    virtual bool operator()(Robot&);
 };

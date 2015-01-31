@@ -3,11 +3,14 @@
 
 Autonomous::Autonomous(Robot &robotRef):
 
+autoPeriodicLoops(0),
 robot(robotRef),
-
 gyroOut(),
-PIDgyro(0.1, 0.001, 0.0, robot.gyro, gyroOut), //possibly need to change the numbers
-actions({Rotate(0.0)})
+PIDgyro(0.1, 0.001, 0.0, &robot.gyro, &gyroOut), //possibly need to change the numbers
+xDist(0),
+yDist(0),
+hypDist(0)
+//actions({Rotate(0.0)})
 {
    PIDgyro.SetOutputRange(-1.0, 1.0);
 }
@@ -27,7 +30,7 @@ bool Autonomous::rotate(float degree) {
 }
 
 bool Autonomous::trackDist() {
-
+	return false;
 }
 
 

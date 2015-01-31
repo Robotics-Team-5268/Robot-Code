@@ -6,6 +6,7 @@
 #include "DriveSystem.h"
 #include <PIDController.h>
 #include "RobotParameters.h"
+#include "AutonomousAction.h"
 #include "SmartDashBoard\Smartdashboard.h"
 //Want to keep track of time and distance
 
@@ -23,9 +24,8 @@ public:
    void autonomousReset(void);
    void autonomousPeriodic(void);
 
-   	   class AutoPIDOut
-	   	   	  :public PIDOutput
-   	   { public:
+   	   class AutoPIDOut : public PIDOutput {
+	   public:
 	   	   float GetValue()
 	   	   {
 	   		   return value;
@@ -53,6 +53,6 @@ private:
    double yDist;
    double hypDist;
 
-   AutonomousAction actions[];
+   //AutonomousAction actions[9];
 };
 

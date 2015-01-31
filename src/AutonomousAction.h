@@ -7,10 +7,11 @@
 #include "RobotParameters.h"
 #include "SmartDashBoard\Smartdashboard.h"
 #include "Autonomous.h"
-#include "Rotate.h"
+
+class Robot;
 
 class AutonomousAction {
-	AutonomousAction();
-	virtual ~AutonomousAction();
+public:
+	virtual ~AutonomousAction(){}
     virtual bool operator()(Robot&) = 0;
 };
