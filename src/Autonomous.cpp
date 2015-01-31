@@ -1,9 +1,10 @@
 #include "Autonomous.h"
 
-Autonomous::Autonomous(Robot &robotRef)
+
+Autonomous::Autonomous(Robot &robotRef):
+
 robot(robotRef),
-drive(robot.driveControllerZero,
-robot.driveControllerOne, robot.driveControllerTwo, robot.driveControllerThree),
+
 output(),
 PIDgyro(0.1, 0.001, 0.0, robot.gyro, output) //possibly need to change the numbers
 {
@@ -29,6 +30,7 @@ bool Autonomous::rotate(int degree) {
 bool Autonomous::trackDist() {
 
 }
+
 
 
 /*

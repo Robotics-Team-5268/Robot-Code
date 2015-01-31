@@ -39,8 +39,8 @@ void Robot::TeleopInit() {
 void Robot::TeleopPeriodic() {
    drive->DrivingCode();
 
-   SmartDashboard::PutData(a, &test1);
-   SmartDashboard::PutData(b, &test1);
+   SmartDashboard::PutData(ENCODER_0_A_CHANNEL, &test1);
+   SmartDashboard::PutData(ENCODER_0_B_CHANNEL, &test1);
    SmartDashboard::PutData(strgyro, &gyro);
 }
 
