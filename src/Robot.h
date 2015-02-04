@@ -14,22 +14,20 @@ public:
 
 	Gyro gyro;
 	BuiltInAccelerometer acclrmtr;
+
+	//Left: left joystick on controller, Right: right stick
 	Joystick stickLeft;
 	Joystick stickRight;
-	//Left: left joystick on controller, Right: right stick
 
 	//Talon controllers for the drive system
+	//0: left front, 1: right front, 2: left back, 3: right back
 	Talon driveControllerZero;
 	Talon driveControllerOne;
 	Talon driveControllerTwo;
 	Talon driveControllerThree;
 
-	//0: left front, 1: right front, 2: left back, 3: right back
-
 	//Lifter 1 or 2 motors
 	Talon liftMotor;
-
-
 
 	//Grabey Wheels
 	Talon grabWheels;
@@ -37,11 +35,10 @@ public:
 	//Autonomous
 	Autonomous autonomous;
 
-
-
 	//Encoders
 	Encoder LiftEnc;
 	Encoder test1;//Rename your mom
+
 	virtual void RobotInit();
 	virtual void AutonomousInit();
 	virtual void AutonomousPeriodic();
