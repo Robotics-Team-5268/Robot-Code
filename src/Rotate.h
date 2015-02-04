@@ -1,15 +1,14 @@
 #pragma once
 
 #include "AutonomousAction.h"
-#include "Autonomous.h"
-#include "Robot.h"
 
-class Rotate : public AutonomousAction {
+class Rotate: public AutonomousAction {
 public:
-
-	Rotate(float degrees);
-	virtual ~Rotate();
-    virtual bool operator()(Robot& robot);
-    void start();
-    void stop();
+	Rotate(float degreesToTurn);
+	virtual ~Rotate(){}
+	virtual bool operator()(Robot& robot);
+	void start();
+	void stop();
+private:
+	float degrees;
 };

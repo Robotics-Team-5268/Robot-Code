@@ -1,5 +1,19 @@
 #include "Move.h"
 
-bool Move::operator()(Robot&){
-	return false;
+Move::Move(float moveAmount):
+	move(moveAmount)
+{
+
+}
+
+bool Move::operator()(Robot&) {
+	return true;
+}
+
+void Move::start(){
+
+}
+
+void Move::stop(){
+
 }

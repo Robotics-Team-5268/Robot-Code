@@ -6,15 +6,16 @@
 #include "SmartDashBoard\Smartdashboard.h"
 
 
-#define GYRO_CHANNEL 1
-#define L_STICK_CHANNEL 2
-#define R_STICK_CHANNEL 3
+#define GYRO_CHANNEL 0
+#define L_STICK_CHANNEL 0
+#define R_STICK_CHANNEL 1
 
 //0: Left front, 1: Right front, 2: Left back, 3: Right back
-#define DRIVE_CONTROLLER_0_CHANNEL 4
-#define DRIVE_CONTROLLER_1_CHANNEL 5
-#define DRIVE_CONTROLLER_2_CHANNEL 6
-#define DRIVE_CONTROLLER_3_CHANNEL 7 //Encoders-------------------------------
+#define DRIVE_CONTROLLER_0_CHANNEL 0
+#define DRIVE_CONTROLLER_1_CHANNEL 1
+#define DRIVE_CONTROLLER_2_CHANNEL 2
+#define DRIVE_CONTROLLER_3_CHANNEL 3
+//Encoders-------------------------------
 #define ENCODER_0_A_CHANNEL 8
 #define ENCODER_0_B_CHANNEL 9
 #define ENCODER_1_A_CHANNEL 10

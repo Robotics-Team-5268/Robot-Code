@@ -10,49 +10,45 @@
 #include "SmartDashBoard\Smartdashboard.h"
 //Want to keep track of time and distance
 
-
 class Robot;
 
-
 class Autonomous {
-   //TODO SOMEBODY BETTER FIGURE OUT WHAT THIS IS AND COMMENT IT!!!!!!!!!
-   int autoPeriodicLoops;
-   Robot& robot;
+private:
+	//How many times the periodic periodic has been called
+	int autoPeriodicLoops;
+	//What step are we through the array of commands
+	unsigned int commandCounter;
+	Robot& robot;
 
 public:
-   Autonomous(Robot&);
-   void autonomousReset(void);
-   void autonomousPeriodic(void);
+    Autonomous(Robot&);
+    void autonomousReset(void);
+    void autonomousPeriodic(void);
 
-   	   class AutoPIDOut : public PIDOutput {
-	   public:
-	   	   float GetValue()
-	   	   {
-	   		   return value;
-	   	   }
-	   	   void PIDWrite(float num)
-	   	   {
-	   		   value = num;
-	   	   }
-   	   private:
-	   	   float value;
-   	   };
-   	   AutoPIDOut gyroOut;
+    class AutoPIDOut : public PIDOutput {
+    public:
+	    float GetValue()
+	   	{
+	    	return value;
+	   	}
+	   	void PIDWrite(float num)
+	   	{
+	   		value = num;
+	   	}
+   	private:
+	   	float value;
+   	};
+
 private:
 
+    //PIDOutput output;
+    AutoPIDOut gyroOut;
+	PIDController PIDgyro;
 
-   //PIDOutput output;
-   PIDController PIDgyro;
+	double xDist;
+	double yDist;
+	double hypDist;
 
-
-   bool trackDist();
-   bool rotate(float degree);
-
-
-   double xDist;
-   double yDist;
-   double hypDist;
-
-   //AutonomousAction actions[9];
+	AutonomousAction* actions[3];
 };
 
