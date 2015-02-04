@@ -7,4 +7,5 @@
 class Move : public AutonomousAction {
 
     virtual bool operator()(Robot&);
+
 };

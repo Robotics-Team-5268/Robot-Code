@@ -37,16 +37,18 @@ public:
    	   private:
 	   	   float value;
    	   };
-   	   AutoPIDOut gyroOut;
+   AutoPIDOut moveOut;
+   AutoPIDOut gyroOut;
+
 private:
-
-
    //PIDOutput output;
    PIDController PIDgyro;
+  // PIDController PIDmove;
 
 
    bool trackDist();
    bool rotate(float degree);
+   bool move(float distance);
 
 
    double xDist;

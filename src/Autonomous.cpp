@@ -2,9 +2,10 @@
 #include "Robot.h"
 
 Autonomous::Autonomous(Robot &robotRef):
-
 autoPeriodicLoops(0),
 robot(robotRef),
+moveOut(),
+//PIDmove(0.1, 0.001, 0.0, , &moveOut),
 gyroOut(),
 PIDgyro(0.1, 0.001, 0.0, &robot.gyro, &gyroOut), //possibly need to change the numbers
 xDist(0),
@@ -29,10 +30,17 @@ bool Autonomous::rotate(float degree) {
    return PIDgyro.OnTarget();
 }
 
-bool Autonomous::trackDist() {
+bool Autonomous::move(float distance) {
+	//robot.drive.move(distance);
+
 	return false;
 }
 
+/*
+bool Autonomous::trackDist() {
+	return false;
+}
+*/
 
 
 /*
