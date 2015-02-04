@@ -12,7 +12,8 @@ Autonomous::Autonomous(Robot &robotRef) :
 	xDist(0),
 	yDist(0),
 	hypDist(0),
-	actions{
+	actions
+	{
 		new Rotate(0.0),
 		new Rotate(0.0),
 		new Move(0.0)
@@ -22,17 +23,21 @@ Autonomous::Autonomous(Robot &robotRef) :
 	PIDgyro.SetOutputRange(-1.0, 1.0);
 }
 
-void Autonomous::autonomousPeriodic(void) {
+void Autonomous::autonomousPeriodic(void)
+{
 	autoPeriodicLoops++;
-	if(commandCounter >= 0 && commandCounter < (sizeof(actions)/sizeof(actions[0]))){
+	if(commandCounter >= 0 && commandCounter < (sizeof(actions)/sizeof(actions[0])))
+	{
 		bool finished = (*actions[commandCounter])(robot);
-		if(finished){
+		if(finished)
+		{
 			commandCounter++;
 		}
 	}
 }
 
-void Autonomous::autonomousReset(void) {
+void Autonomous::autonomousReset(void)
+{
 	autoPeriodicLoops = 0;
 	commandCounter = 0;
 }
