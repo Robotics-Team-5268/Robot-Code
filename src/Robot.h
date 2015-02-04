@@ -29,8 +29,7 @@ public:
 	//Lifter 1 or 2 motors
 	Talon liftMotor;
 
-	//Encoders
-	Encoder test1; //RENAME VARIABLE!!!!
+
 
 	//Grabey Wheels
 	Talon grabWheels;
@@ -38,8 +37,7 @@ public:
 	//Autonomous
 	Autonomous autonomous;
 
-	//Create drive system
-	DriveSystem* drive;
+
 
 	//Encoders
 	Encoder LiftEnc;

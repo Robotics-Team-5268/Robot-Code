@@ -27,6 +27,7 @@
 
 //Grabey Arms
 #define GRAB_ARMS 7
+#define GRAB_ARMS_SPEED .3
 
 #define ENCODER_ARM_A_CHANNEL 16//Arm Lift Encoder
 #define ENCODER_ARM_B_CHANNEL 17//Arm Lift Encoder

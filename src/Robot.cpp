@@ -19,6 +19,7 @@ driveControllerTwo(DRIVE_CONTROLLER_2_CHANNEL),
 driveControllerThree(DRIVE_CONTROLLER_3_CHANNEL),//replace any numbers with channel from RobotParameters
 liftMotor(LIFT_CHANNEL_MOTOR),
 grabWheels(GRAB_ARMS),
+autonomous(*this),
 LiftEnc(LIFT_ENCODER_A_CHANNEL, LIFT_ENCODER_B_CHANNEL, true, Encoder::k4X),
 test1(ENCODER_0_A_CHANNEL, ENCODER_0_B_CHANNEL, false, Encoder::k4X), //RENAME VARIABLE!!!!
 x_offset(0),
