@@ -10,6 +10,7 @@ public:
    virtual ~MecanumDrive();
    virtual void DrivingCode();
    virtual void rotate(float pidOutput);
+   virtual void move(float pidOutput);
 private:
    Robot &robot;
    RobotDrive drive;

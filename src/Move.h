@@ -2,6 +2,7 @@
 
 #include "AutonomousAction.h"
 
+<<<<<<< HEAD
 class Move: public AutonomousAction {
 public:
 	Move(float moveAmount);
@@ -11,4 +12,12 @@ public:
 	void stop();
 private:
 	float move;
+=======
+
+
+class Move : public AutonomousAction {
+
+    virtual bool operator()(Robot&);
+
+>>>>>>> branch 'master' of https://github.com/Robotics-Team-5268/Robot-Code.git
 };

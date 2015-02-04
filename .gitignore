@@ -4,3 +4,6 @@ Debug
 .cproject
 .project
 Thumbs.db
+build.properties
+build.xml
+.gitignore

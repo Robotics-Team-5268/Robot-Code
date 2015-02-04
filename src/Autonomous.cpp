@@ -17,6 +17,7 @@ Autonomous::Autonomous(Robot &robotRef) :
 		new Rotate(0.0),
 		new Move(0.0)
 	}
+
 {
 	PIDgyro.SetOutputRange(-1.0, 1.0);
 }
@@ -35,4 +36,3 @@ void Autonomous::autonomousReset(void) {
 	autoPeriodicLoops = 0;
 	commandCounter = 0;
 }
-

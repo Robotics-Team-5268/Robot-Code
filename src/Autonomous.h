@@ -49,6 +49,11 @@ private:
 	double yDist;
 	double hypDist;
 
+    //PIDOutput output;
+    PIDController PIDgyro;
+    // PIDController PIDmove;
+
 	AutonomousAction* actions[3];
+
 };
 
