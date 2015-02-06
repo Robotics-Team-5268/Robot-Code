@@ -7,6 +7,7 @@ Autonomous::Autonomous(Robot &robotRef) :
 	autoPeriodicLoops(0),
 	commandCounter(0),
 	robot(robotRef),
+	//Gyro
 	gyroOut(),
 	PIDgyro(0.1, 0.001, 0.0, &robot.gyro, &gyroOut), //possibly need to change the numbers
 	xDist(0),

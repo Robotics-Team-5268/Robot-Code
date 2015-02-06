@@ -51,9 +51,4 @@ public:
 
 	//Create drive system
 	DriveSystem* drive;
-	double x_offset, y_offset;
-	double x, y;
-	double x_vel, y_vel;
-	double x_accel, y_accel;
-	int counter;
 };

@@ -41,17 +41,12 @@ public:
 
 private:
 
-    //PIDOutput output;
     AutoPIDOut gyroOut;
 	PIDController PIDgyro;
 
 	double xDist;
 	double yDist;
 	double hypDist;
-
-    //PIDOutput output;
-
-    // PIDController PIDmove;
 
 	AutonomousAction* actions[3];
 

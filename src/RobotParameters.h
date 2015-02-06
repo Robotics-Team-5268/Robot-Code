@@ -33,6 +33,9 @@
 #define ENCODER_ARM_B_CHANNEL 17//Arm Lift Encoder
 //-----------------------------------------
 
+#define GRAVITY 9.81 //  m / (s^2)
+#define AUTONOMOUS_PERIOD 1/50  // 50 times a second
+
 /*
 #define GATE_BUTTON 5 //LB top trigger
 #define GATE_SOLENOID_ONE 8
