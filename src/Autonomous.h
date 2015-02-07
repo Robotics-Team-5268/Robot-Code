@@ -39,19 +39,32 @@ public:
 	   	float value;
    	};
 
+    class AutoPIDIn : public PIDSource {
+    public:
+    	void SetValue(float num)
+    	{
+    		value = num;
+    	}
+    	double PIDGet(){
+    		return value;
+    	}
+    private:
+    	float value;
+    };
+
 
     AutoPIDOut gyroOut;
 	PIDController PIDgyro;
+
+	AutoPIDIn moveIn;
+	AutoPIDOut moveOut;
+	PIDController PIDmove;
 
 private:
 
 	double xDist;
 	double yDist;
 	double hypDist;
-
-    //PIDOutput output;
-
-    // PIDController PIDmove;
 
 	AutonomousAction* actions[4];
 
