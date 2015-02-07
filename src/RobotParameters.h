@@ -43,6 +43,9 @@
 #define AUTONOMOUS_PERIOD 1/50  // 50 times a second
 #define MS_PER_PERIOD 20 //(better than ^) 20 Milliseconds in a period
 
+//Channel_Output Channel Out_Put UltraSonic
+#define ULTRASONIC_CHANNEL 5
+
 /*
 #define GATE_BUTTON 5 //LB top trigger
 #define GATE_SOLENOID_ONE 8

@@ -15,6 +15,8 @@ public:
 	Gyro gyro;
 	BuiltInAccelerometer acclrmtr;
 
+	AnalogOutput ultrasonic;
+
 	//Left: left joystick on controller, Right: right stick
 	Joystick stickLeft;
 	Joystick stickRight;

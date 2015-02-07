@@ -11,34 +11,29 @@ Rotate::Rotate(float degreesToTurn):
 
 float Rotate::getAngle(Robot& robot)
 {
-	return robot.gyro.GetAngle() - degrees;
+	return robot.gyro.GetAngle() - degrees;//Return the difference
 
 }
 
 bool Rotate::operator()(Robot& robot){
 
 	//check if PID is enabled
-	if (robot.autonomous.PIDgyro.IsEnabled())
+	if (robot.autonomous.PIDgyro.IsEnabled())//checks if PIDgyro is on
 	{
-		robot.drive->rotate(robot.autonomous.gyroOut.GetValue());
-		if(robot.autonomous.PIDgyro.OnTarget())
+		robot.drive->rotate(robot.autonomous.gyroOut.GetValue());//obtain actual angle
+		if(robot.autonomous.PIDgyro.OnTarget())//checks if PID is finished and if so, disables PIDgyro
 		{
-			robot.autonomous.PIDgyro.Disable();
+			robot.autonomous.PIDgyro.Disable();//turns off PIDgyro
 			return true;
 		}
 
 	}
 	else{
-		robot.autonomous.PIDgyro.SetSetpoint(getAngle(robot));
-		robot.autonomous.PIDgyro.Enable();
+		robot.autonomous.PIDgyro.SetSetpoint(getAngle(robot));//find the desired angle
+		robot.autonomous.PIDgyro.Enable();//turn on PIDgyro
 	}
 
 	return true; //handle return
-}
-
-void Rotate::start(){
-	//put nothing inside
-	//delete later
 }
 
 void Rotate::stop(){

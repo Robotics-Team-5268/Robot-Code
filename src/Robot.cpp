@@ -15,6 +15,7 @@ bool AorM; //1 (true) Arcade and 0 (false) Mecanum
 Robot::Robot():
 	gyro(GYRO_CHANNEL),
 	acclrmtr(BuiltInAccelerometer::Range::kRange_8G),
+	ultrasonic(ULTRASONIC_CHANNEL),
 	stickLeft(L_STICK_CHANNEL),
 	stickRight(R_STICK_CHANNEL),
 	driveControllerZero(DRIVE_CONTROLLER_0_CHANNEL),
