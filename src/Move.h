@@ -11,6 +11,8 @@ public:
 	void start(Robot& robot);
 	void stop(Robot& robot);
 	void copyValues();
+	void printValues();
+
 private:
 	float move;
 	bool started;

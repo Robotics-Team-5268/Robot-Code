@@ -20,3 +20,7 @@ void ArcadeDrive::DrivingCode() {
 void ArcadeDrive::rotate(float pidOutput) {
     drive.ArcadeDrive(0, pidOutput, true);
 }
+
+void ArcadeDrive::move(float pidOutput){
+	drive.ArcadeDrive(pidOutput, 0, true);
+}

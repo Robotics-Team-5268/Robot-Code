@@ -10,6 +10,7 @@ public:
 	float getAngle(Robot& robot);
 	void start();
 	void stop();
+	void printValues();
 private:
 	float degrees;
 	float finalAngle;

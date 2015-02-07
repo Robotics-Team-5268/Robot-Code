@@ -45,3 +45,7 @@ void Rotate::stop(){
 	//put nothing inside
 	//delete later
 }
+
+void Rotate::printValues(){
+
+}

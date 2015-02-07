@@ -63,10 +63,7 @@ bool Move::operator()(Robot& robot) {
     }else{
     	float value = robot.autonomous.moveOut.GetValue();
     	value *= move > 0 ? 1 : -1;
-    	robot.driveControllerZero.Set(value);
-    	robot.driveControllerOne.Set(value);
-    	robot.driveControllerTwo.Set(value);
-    	robot.driveControllerThree.Set(value);
+    	robot.drive->move(value);
     }
 
     copyValues();
@@ -94,4 +91,13 @@ void Move::copyValues(){
 	last_y_vel = y_vel;
 	last_x = x;
 	last_y = y;
+}
+
+void Move::printValues(){
+	SmartDashboard::PutNumber("Move.X.Acceleration", x_accel);
+	SmartDashboard::PutNumber("Move.X.Velocity", x_vel);
+	SmartDashboard::PutNumber("Move.X.Position", x);
+	SmartDashboard::PutNumber("Move.Y.Acceleration", y_accel);
+	SmartDashboard::PutNumber("Move.Y.Velocity", y_vel);
+	SmartDashboard::PutNumber("Move.Y.Position", y);
 }

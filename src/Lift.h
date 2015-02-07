@@ -20,6 +20,7 @@ public:
 	virtual bool operator()(Robot& robot);
 	void start();
 	void stop();
+	void printValues();
 	//encoder.SetDistancePerPulse(LIFT_CONST);
 
 private:

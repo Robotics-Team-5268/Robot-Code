@@ -57,6 +57,8 @@ void Lift::stop()
 
 }
 
-
+void Lift::printValues(){
+	SmartDashboard::PutString("Lift.State", State == GOING_UP ? "Going Up" : State == GOING_DOWN ? "Going Down" : "Staying Put");
+}
 
 

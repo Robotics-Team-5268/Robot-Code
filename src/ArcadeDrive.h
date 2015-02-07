@@ -10,6 +10,7 @@ public:
    virtual ~ArcadeDrive();
    virtual void DrivingCode();
    virtual void rotate(float);
+   virtual void move(float);
 private:
    Robot &robot;
    RobotDrive drive;

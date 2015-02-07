@@ -46,4 +46,12 @@ public:
 
 	//Create drive system
 	DriveSystem* drive;
+
+	/********* TEST ONLY STUFF *********/
+
+	AutonomousAction* currentAction;
+	int counter;
+
+	/***********************************/
+
 };
