@@ -1,5 +1,4 @@
 #pragma once
-#include "Encoder.h"
 #include "RobotParameters.h"
 #include "AutonomousAction.h"
 
@@ -14,7 +13,7 @@ public:
 		STAYING_PUT
 	} State;
 
-	Encoder encoder;
+	AnalogPotentiometer potentiometer;
 
 	Lift(float liftDistance);
 	virtual ~Lift(){}

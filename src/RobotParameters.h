@@ -9,6 +9,7 @@
 #define GYRO_CHANNEL 0
 #define L_STICK_CHANNEL 0
 #define R_STICK_CHANNEL 1
+#define LIFT_POTENTIOMETER_CHANNEL 1
 
 //0: Left front, 1: Right front, 2: Left back, 3: Right back
 #define DRIVE_CONTROLLER_0_CHANNEL 0
