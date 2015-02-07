@@ -7,8 +7,10 @@ public:
 	Rotate(float degreesToTurn);
 	virtual ~Rotate(){}
 	virtual bool operator()(Robot& robot);
+	float getAngle(Robot& robot);
 	void start();
 	void stop();
 private:
 	float degrees;
+	float finalAngle;
 };
