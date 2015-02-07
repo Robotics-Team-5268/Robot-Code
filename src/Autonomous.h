@@ -39,10 +39,11 @@ public:
 	   	float value;
    	};
 
-private:
 
     AutoPIDOut gyroOut;
 	PIDController PIDgyro;
+
+private:
 
 	double xDist;
 	double yDist;

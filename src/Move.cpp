@@ -1,4 +1,5 @@
 #include "Move.h"
+#include "Robot.h"
 
 Move::Move(float moveAmount):
 	move(moveAmount),
@@ -26,8 +27,8 @@ bool Move::operator()(Robot& robot) {
 	// Acceleration is the change in velocity per second
 	// Acceleration = G_Fore * Gravity
 	// Scale the acceleration to handle being called every AUTONOMOUS_PERIOD of a second
-	x_accel = &robot.acclrmtr.GetX() * GRAVITY * AUTONOMOUS_PERIOD;
-	y_accel = &robot.acclrmtr.GetY() * GRAVITY * AUTONOMOUS_PERIOD;
+	x_accel = robot.acclrmtr.GetX() * GRAVITY * AUTONOMOUS_PERIOD;
+	y_accel = robot.acclrmtr.GetY() * GRAVITY * AUTONOMOUS_PERIOD;
 
 	// Velocity is the change in position per second
 	x_vel += x_accel;
