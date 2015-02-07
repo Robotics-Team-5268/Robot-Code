@@ -30,12 +30,17 @@
 #define GRAB_ARMS 7
 #define GRAB_ARMS_SPEED .3
 
+//Grabey Wheels
+#define GRAB_WHEEL_CONTROLLER_A 7
+#define GRAB_WHEEL_CONTROLLER_B 8
+
 #define ENCODER_ARM_A_CHANNEL 16//Arm Lift Encoder
 #define ENCODER_ARM_B_CHANNEL 17//Arm Lift Encoder
 //-----------------------------------------
 
 #define GRAVITY 9.81 //  m / (s^2)
 #define AUTONOMOUS_PERIOD 1/50  // 50 times a second
+#define MS_PER_PERIOD 20 //(better than ^) 20 Milliseconds in a period
 
 /*
 #define GATE_BUTTON 5 //LB top trigger

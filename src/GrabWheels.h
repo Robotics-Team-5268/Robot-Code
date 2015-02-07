@@ -1,23 +1,42 @@
 #pragma once
 
 #include "RobotParameters.h"
-#include "Robot.h"
 #include "SpeedController.h"
-#include "RobotParameters.h"
+#include "AutonomousAction.h"
 
-class GrabMotors
+class GrabWheel: public AutonomousAction
 {
 
 	public:
-		Talon speed;
+		Talon GrabController_A;
+		Talon GrabController_B;
 
-		GrabMotors::GrabMotors():
-		speed(GRAB_ARMS_SPEED)
+		GrabWheel(bool SameDirection, float SpinTime);
+		enum
 		{
-			speed.Set(GRAB_ARMS_SPEED);
+			GRABBING,
+			STATIONARY,
+			ROTATING
+		}State;
+		float setMSPerPeriod(float MSPerPeriod)
+		{
+			if(MSPerPeriod > 0)
+			{
+				PeriodsPerSecond = 1000 / MSPerPeriod;
+				return PeriodsPerSecond;
+			}
+			else
+			{
+			return 0;
+			}
 		}
-
-
-
-
+		virtual bool operator()(Robot& robot);
+		virtual ~GrabWheel(){}
+		void start();
+		void stop();
+	private:
+		float counter;
+		float Time;
+		float PeriodsPerSecond;
+		bool SD;
 };

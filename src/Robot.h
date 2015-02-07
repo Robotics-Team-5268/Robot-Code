@@ -30,7 +30,8 @@ public:
 	Talon liftController;
 
 	//Grabey Wheels
-	Talon grabWheels;
+	Talon GrabController_A;
+	Talon GrabController_B;
 
 	//Autonomous
 	Autonomous autonomous;
