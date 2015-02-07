@@ -1,25 +1,29 @@
 #pragma once
 #include "Encoder.h"
 #include "RobotParameters.h"
+#include "AutonomousAction.h"
 
 
-
-class LiftMotor
+class Lift: public AutonomousAction
 {
 public:
+	enum
+	{
+		GOING_UP,
+		GOING_DOWN,
+		STAYING_PUT
+	} State;
+
 	Encoder encoder;
 
-	LiftMotor::LiftMotor():
-		encoder(LIFT_ENCODER_A_CHANNEL, LIFT_ENCODER_B_CHANNEL, true, Encoder::k4X)
-	{
-		encoder.SetDistancePerPulse(LIFT_CONST);
-	}
+	Lift(float liftDistance);
+	virtual ~Lift(){}
+	virtual bool operator()(Robot& robot);
+	void start();
+	void stop();
+	//encoder.SetDistancePerPulse(LIFT_CONST);
 
-
-
-		//encoder.SetDistancePerPulse(LIFT_CONST);
-
-
-
+private:
+	float distance;
 
 };

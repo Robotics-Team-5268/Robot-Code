@@ -27,17 +27,13 @@ public:
 	Talon driveControllerThree;
 
 	//Lifter 1 or 2 motors
-	Talon liftMotor;
+	Talon liftController;
 
 	//Grabey Wheels
 	Talon grabWheels;
 
 	//Autonomous
 	Autonomous autonomous;
-
-	//Encoders
-	Encoder LiftEnc;
-	Encoder test1;//Rename your mom
 
 	virtual void RobotInit();
 	virtual void AutonomousInit();

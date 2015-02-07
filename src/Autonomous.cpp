@@ -2,6 +2,7 @@
 #include "Robot.h"
 #include "Rotate.h"
 #include "Move.h"
+#include "Lift.h"
 
 Autonomous::Autonomous(Robot &robotRef) :
 	autoPeriodicLoops(0),
@@ -15,6 +16,7 @@ Autonomous::Autonomous(Robot &robotRef) :
 	hypDist(0),
 	actions
 	{
+		new Lift(10.0),
 		new Rotate(0.0),
 		new Rotate(0.0),
 		new Move(0.0)

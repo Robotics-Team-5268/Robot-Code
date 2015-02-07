@@ -20,8 +20,9 @@
 #define ENCODER_0_B_CHANNEL 9
 
 //Motor Controls
-#define LIFT_CHANNEL_MOTOR 4
-#define LIFT_CONST 9
+#define LIFT_MOTOR_CHANNEL 4
+
+#define LIFT_CONST .0278
 #define LIFT_ENCODER_A_CHANNEL 5
 #define LIFT_ENCODER_B_CHANNEL 6
 
