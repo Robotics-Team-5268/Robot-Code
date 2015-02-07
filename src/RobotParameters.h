@@ -28,8 +28,9 @@
 #define LIFT_ENCODER_B_CHANNEL 6
 
 //Grabey Arms
-#define GRAB_ARMS 7
+#define GRAB_ARM_POTENTIOMETER_CHANNEL 7
 #define GRAB_ARMS_SPEED .3
+#define GRAB_ARM_CHANNEL 5
 
 //Grabey Wheels
 #define GRAB_WHEEL_CONTROLLER_A 7

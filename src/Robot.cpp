@@ -25,6 +25,7 @@ Robot::Robot():
 	liftController(LIFT_MOTOR_CHANNEL),
 	GrabController_A(GRAB_WHEEL_CONTROLLER_A),
 	GrabController_B(GRAB_WHEEL_CONTROLLER_B),
+	GrabArmController(GRAB_ARM_CHANNEL),
 	autonomous(*this), //RENAME VARIABLE!!!!
 	currentAction(),
 	counter(0)

@@ -35,6 +35,9 @@ public:
 	Talon GrabController_A;
 	Talon GrabController_B;
 
+	//Grabey Arms
+	Talon GrabArmController;
+
 	//Autonomous
 	Autonomous autonomous;
 
