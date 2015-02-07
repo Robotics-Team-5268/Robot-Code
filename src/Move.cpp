@@ -1,11 +1,16 @@
 #include "Move.h"
 #include "Robot.h"
+#include <math.h>
 
 Move::Move(float moveAmount):
 	move(moveAmount),
 	started(false),
-	x_offset(0.0),
-	y_offset(0.0),
+	last_x_accel(0.0),
+	last_y_accel(0.0),
+	last_x_vel(0.0),
+	last_y_vel(0.0),
+	last_x(0.0),
+	last_y(0.0),
 	x_accel(0.0),
 	y_accel(0.0),
 	x_vel(0.0),
@@ -19,7 +24,7 @@ Move::Move(float moveAmount):
 
 bool Move::operator()(Robot& robot) {
 	if(!started){
-		start();
+		start(robot);
 	}
 
 	bool finished = false;
@@ -31,14 +36,15 @@ bool Move::operator()(Robot& robot) {
 	y_accel = robot.acclrmtr.GetY() * GRAVITY * AUTONOMOUS_PERIOD;
 
 	// Velocity is the change in position per second
-	x_vel += x_accel;
-	y_vel += y_accel;
+	x_vel = last_x_vel + ((last_x_accel + x_accel) / 2) * AUTONOMOUS_PERIOD;
+	y_vel = last_y_vel + ((last_y_accel + y_accel) / 2) * AUTONOMOUS_PERIOD;
 
 
-	x += x_vel;
-	y += y_vel;
+	x = last_x + last_x_vel * AUTONOMOUS_PERIOD + .5 * last_x_accel * AUTONOMOUS_PERIOD * AUTONOMOUS_PERIOD;
+	y = last_y + last_y_vel * AUTONOMOUS_PERIOD + .5 * last_y_accel * AUTONOMOUS_PERIOD * AUTONOMOUS_PERIOD;
 
-	//NEED TO HANDLE MOTORS!!!!
+	robot.autonomous.moveIn.SetValue(sqrt(x * x + y * y));
+	finished = robot.autonomous.PIDmove.OnTarget();
 
 	counter++;
     if(counter == 50)
@@ -52,13 +58,33 @@ bool Move::operator()(Robot& robot) {
 	    counter = 0;
     }
 
+    if(finished){
+    	stop(robot);
+    }
+
+    copyValues();
+
 	return finished;
 }
 
-void Move::start(){
+void Move::start(Robot& robot){
 	started = true;
+
+	robot.autonomous.PIDmove.SetSetpoint(move);
+	robot.autonomous.PIDmove.Enable();
 }
 
-void Move::stop(){
+void Move::stop(Robot& robot){
 	started = false;
+
+	robot.autonomous.PIDmove.Reset(); //Disables the PID
+}
+
+void Move::copyValues(){
+	last_x_accel = x_accel;
+	last_y_accel = y_accel;
+	last_x_vel = x_vel;
+	last_y_vel = y_vel;
+	last_x = x;
+	last_y = y;
 }

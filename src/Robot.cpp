@@ -52,6 +52,10 @@ void Robot::TeleopPeriodic() {
    SmartDashboard::PutData(strgyro, &gyro);
 }
 
+void Robot::TestInit() {
+
+}
+
 void Robot::TestPeriodic() {
 }
 
