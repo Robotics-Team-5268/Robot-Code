@@ -33,6 +33,7 @@ bool Lift::operator()(Robot& robot)
 		{
 			robot.liftController.Set(0);
 			State = STAYING_PUT;
+			return true;
 		}
 	}
 	else if (State == GOING_DOWN)
@@ -41,10 +42,10 @@ bool Lift::operator()(Robot& robot)
 		{
 			robot.liftController.Set(0);
 			State = STAYING_PUT;
+			return true;
 		}
 	}
-
-	return true;
+	return false;
 }
 
 void Lift::start()
