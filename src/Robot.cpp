@@ -16,8 +16,7 @@ Robot::Robot():
 	gyro(GYRO_CHANNEL),
 	acclrmtr(BuiltInAccelerometer::Range::kRange_8G),
 	ultrasonic(ULTRASONIC_CHANNEL),
-	stickLeft(L_STICK_CHANNEL),
-	stickRight(R_STICK_CHANNEL),
+	stick(JOYSTICK_CHANNEL),
 	driveControllerZero(DRIVE_CONTROLLER_0_CHANNEL),
 	driveControllerOne(DRIVE_CONTROLLER_1_CHANNEL),
 	driveControllerTwo(DRIVE_CONTROLLER_2_CHANNEL),
@@ -28,7 +27,8 @@ Robot::Robot():
 	GrabArmController(GRAB_ARM_CHANNEL),
 	autonomous(*this), //RENAME VARIABLE!!!!
 	currentAction(),
-	counter(0)
+	counter(0),
+	done(true)
 {
 	drive = new MecanumDrive(*this); //Uses left joystick to move forward/backwards and left/right, and uses right stick to rotate/turn left/right
 	//drive = new ArcadeDrive(this); //Uses left joystick to move forwards/backwards and rotate/turn left/right
@@ -70,6 +70,7 @@ void Robot::TestInit() {
 
 	SmartDashboard::PutData("Autonomous Action", &sc);
 	SmartDashboard::PutNumber("Parameter", 0.0);
+	SmartDashboard::PutBoolean("Ready", done);
 }
 
 void Robot::TestPeriodic() {
@@ -77,6 +78,7 @@ void Robot::TestPeriodic() {
 
 	//If we dont have an action lets look for one
 	if(currentAction == NULL){
+
 		//Only check every second
 		if(counter == 50){
 			//Get the new state if we dont have a current action.
@@ -86,21 +88,28 @@ void Robot::TestPeriodic() {
 
 			if(type == NULL){
 				currentAction = NULL;
+				done = true;
+				SmartDashboard::PutBoolean("Ready", done);
 				return;
 			}
 
-			double para = SmartDashboard::GetNumber("Parameter");
+			if(done){
+				double para = SmartDashboard::GetNumber("Parameter");
 
-			switch(*type){
-			case AutonomousAction::AATypes::MOVE:
-				currentAction = new Move(para);
-				break;
-			case AutonomousAction::AATypes::ROTATE:
-				currentAction = new Rotate(para);
-				break;
-			case AutonomousAction::AATypes::LIFT:
-				currentAction = new Lift(para);
-				break;
+				switch(*type){
+				case AutonomousAction::AATypes::MOVE:
+					currentAction = new Move(para);
+					break;
+				case AutonomousAction::AATypes::ROTATE:
+					currentAction = new Rotate(para);
+					break;
+				case AutonomousAction::AATypes::LIFT:
+					currentAction = new Lift(para);
+					break;
+				}
+
+				done = false;
+				SmartDashboard::PutBoolean("Ready", done);
 			}
 		}
 	}else{//We have an action so lets update the action
@@ -119,6 +128,7 @@ void Robot::TestPeriodic() {
 	//Reset every second
 	if(counter == 50){
 		counter = 0;
+		SmartDashboard::PutBoolean("Ready", done);
 	}
 }
 
