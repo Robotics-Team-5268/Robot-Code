@@ -11,11 +11,11 @@ class GrabMotors
 	public:
 		Talon speed;
 
-	 GrabMotors::GrabMotors():
+		GrabMotors::GrabMotors():
 		speed(GRAB_ARMS_SPEED)
-	 {
-		 speed.Set(GRAB_ARMS_SPEED);
-	 }
+		{
+			speed.Set(GRAB_ARMS_SPEED);
+		}
 
 
 

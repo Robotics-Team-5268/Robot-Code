@@ -60,6 +60,13 @@ bool Move::operator()(Robot& robot) {
 
     if(finished){
     	stop(robot);
+    }else{
+    	float value = robot.autonomous.moveOut.GetValue();
+    	value *= move > 0 ? 1 : -1;
+    	robot.driveControllerZero.Set(value);
+    	robot.driveControllerOne.Set(value);
+    	robot.driveControllerTwo.Set(value);
+    	robot.driveControllerThree.Set(value);
     }
 
     copyValues();
@@ -70,7 +77,7 @@ bool Move::operator()(Robot& robot) {
 void Move::start(Robot& robot){
 	started = true;
 
-	robot.autonomous.PIDmove.SetSetpoint(move);
+	robot.autonomous.PIDmove.SetSetpoint(abs(move));
 	robot.autonomous.PIDmove.Enable();
 }
 
