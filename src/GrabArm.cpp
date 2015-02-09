@@ -10,7 +10,6 @@ distance(GrabArmDistance)
 
 }
 
-
 bool GrabArm::operator()(Robot& robot)
 {
 	if(State == STAYING_PUT)
