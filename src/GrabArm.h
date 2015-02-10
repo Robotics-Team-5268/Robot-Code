@@ -13,8 +13,6 @@ public:
 		STAYING_PUT
 	} State;
 
-	AnalogPotentiometer potentiometer;
-
 	GrabArm(float GrabArmDistance);
 	virtual ~GrabArm(){}
 	virtual bool operator()(Robot& robot);

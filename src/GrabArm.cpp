@@ -4,7 +4,6 @@
 
 GrabArm::GrabArm(float GrabArmDistance):
 State(STAYING_PUT),
-potentiometer(GRAB_ARM_POTENTIOMETER_CHANNEL, 4),
 distance(GrabArmDistance)
 {
 
@@ -14,7 +13,7 @@ bool GrabArm::operator()(Robot& robot)
 {
 	if(State == STAYING_PUT)
 	{
-		if(potentiometer.Get() < distance)
+		if(robot.potentiometer.Get() < distance)
 		{
 			State = GOING_UP; //move up code
 			robot.GrabArmController.Set(.75);
@@ -27,7 +26,7 @@ bool GrabArm::operator()(Robot& robot)
 	}
 	else if (State == GOING_UP)
 	{
-		if(potentiometer.Get() >= distance)
+		if(robot.potentiometer.Get() >= distance)
 		{
 			robot.GrabArmController.Set(0);
 			State = STAYING_PUT;
@@ -36,7 +35,7 @@ bool GrabArm::operator()(Robot& robot)
 	}
 	else if (State == GOING_DOWN)
 	{
-		if(potentiometer.Get() <= distance)
+		if(robot.potentiometer.Get() <= distance)
 		{
 			robot.GrabArmController.Set(0);
 			State = STAYING_PUT;

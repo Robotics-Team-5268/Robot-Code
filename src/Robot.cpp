@@ -25,6 +25,7 @@ Robot::Robot():
 	GrabController_A(GRAB_WHEEL_CONTROLLER_A),
 	GrabController_B(GRAB_WHEEL_CONTROLLER_B),
 	GrabArmController(GRAB_ARM_CHANNEL),
+	potentiometer(GRAB_ARM_POTENTIOMETER_CHANNEL, GRAB_ARM_POTENTIOMETER_RANGE),
 	autonomous(*this), //RENAME VARIABLE!!!!
 	currentAction(),
 	counter(0),
@@ -56,8 +57,59 @@ void Robot::TeleopInit() {
 
 void Robot::TeleopPeriodic() {
 	drive->DrivingCode();
+	bool inPressed = stick.GetRawButton(GRAB_WHEEL_BUTTON_IN);
+	bool outPressed = stick.GetRawButton(GRAB_WHEEL_BUTTON_OUT);
+	bool armInPressed = stick.GetRawButton(GRAB_ARM_BUTTON_IN);
+	bool armOutPressed = stick.GetRawButton(GRAB_ARM_BUTTON_OUT);
+	bool liftUpPressed = stick.GetRawButton(LIFT_BUTTON_UP);
+	bool liftDownPressed = stick.GetRawButton(LIFT_BUTTON_DOWN);
 
-   SmartDashboard::PutData(strgyro, &gyro);
+	//Grab Wheels
+	if(inPressed == TRUE && outPressed == FALSE){
+		GrabController_A.Set(.75);
+		GrabController_B.Set(-.75);
+	}
+	else if(inPressed == FALSE && outPressed == TRUE){
+		GrabController_A.Set(-.75);
+		GrabController_B.Set(.75);
+	}
+	else if(inPressed && outPressed){
+		GrabController_A.Set(-.75);
+		GrabController_B.Set(-.75);
+	}
+	else{
+		GrabController_A.Set(0);
+		GrabController_B.Set(0);
+	}
+
+	//Arm
+	double armValue = 0;
+	if (armValue <= 10) /*TODO: Arm value max*/  {
+		if(armInPressed && !armOutPressed){
+			GrabArmController.Set(.75);
+			armValue = .75;
+		}
+		else if(!armInPressed && armOutPressed){
+			GrabArmController.Set(-.75);
+			armValue = -.75;
+		}
+		else{
+			GrabArmController.Set(0);
+			armValue = 0;
+		}
+	}
+
+	//Lift
+	if(liftUpPressed && !liftDownPressed){
+		liftController.Set(.75);
+	}
+	else if(!liftUpPressed && liftDownPressed){
+		liftController.Set(-.75);
+	}
+	else{
+		liftController.Set(0);
+	}
+	SmartDashboard::PutData(strgyro, &gyro);
 }
 
 void Robot::TestInit() {
