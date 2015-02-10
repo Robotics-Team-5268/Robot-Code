@@ -15,9 +15,6 @@
 #define DRIVE_CONTROLLER_1_CHANNEL 1
 #define DRIVE_CONTROLLER_2_CHANNEL 2
 #define DRIVE_CONTROLLER_3_CHANNEL 3
-//Encoders-------------------------------
-#define ENCODER_0_A_CHANNEL 8
-#define ENCODER_0_B_CHANNEL 9
 
 //Motor Controls
 #define LIFT_MOTOR_CHANNEL 4
@@ -46,6 +43,9 @@
 //Channel_Output Channel Out_Put UltraSonic
 #define ULTRASONIC_CHANNEL 5
 
+//Triggers to Axis Rotate
+#define LEFT_TRIGGER (Joystick::AxisType) 2
+#define RIGHT_TRIGGER (Joystick::AxisType) 3
 /*
 #define GATE_BUTTON 5 //LB top trigger
 #define GATE_SOLENOID_ONE 8

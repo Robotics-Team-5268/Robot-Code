@@ -1,5 +1,6 @@
 #include "MecanumDrive.h"
 #include "Autonomous.h"
+#include "RobotParameters.h"
 
 MecanumDrive::MecanumDrive(Robot &robotRef):
 robot(robotRef),
@@ -15,7 +16,8 @@ MecanumDrive::~MecanumDrive(){
 }
 
 void MecanumDrive::DrivingCode() {
-  drive.MecanumDrive_Cartesian(robot.stick.GetX(), robot.stick.GetY(), robot.stick.GetZ(), robot.gyro.GetAngle());
+	float rotateAmnt = robot.stick.GetAxis(RIGHT_TRIGGER) + (robot.stick.GetAxis(LEFT_TRIGGER) * -1);
+  drive.MecanumDrive_Cartesian(robot.stick.GetX(), robot.stick.GetY(), rotateAmnt, robot.gyro.GetAngle());
 }
 
 void MecanumDrive::rotate(float pidOutput) {
