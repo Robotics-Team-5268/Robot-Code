@@ -14,7 +14,7 @@ ArcadeDrive::~ArcadeDrive(){
 }
 
 void ArcadeDrive::DrivingCode() {
-    drive.ArcadeDrive(((robot.stickLeft.GetY()*4)/4), -((robot.stickLeft.GetX()*3)/4), false);
+    drive.ArcadeDrive(((robot.stick.GetY()*4)/4), -((robot.stick.GetX()*3)/4), false);
 }
 
 void ArcadeDrive::rotate(float pidOutput) {

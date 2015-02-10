@@ -18,8 +18,7 @@ public:
 	AnalogOutput ultrasonic;
 
 	//Left: left joystick on controller, Right: right stick
-	Joystick stickLeft;
-	Joystick stickRight;
+	Joystick stick;
 
 	//Talon controllers for the drive system
 	//0: left front, 1: right front, 2: left back, 3: right back
@@ -56,6 +55,7 @@ public:
 
 	AutonomousAction* currentAction;
 	int counter;
+	bool done;
 
 	/***********************************/
 
