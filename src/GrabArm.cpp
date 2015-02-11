@@ -2,9 +2,9 @@
 #include "RobotParameters.h"
 #include "Robot.h"
 
-GrabArm::GrabArm(float GrabArmDistance):
+GrabArm::GrabArm(float GrabArmCurrent):
 State(STAYING_PUT),
-distance(GrabArmDistance)
+Current(GrabArmCurrent)
 {
 
 }
@@ -13,7 +13,7 @@ bool GrabArm::operator()(Robot& robot)
 {
 	if(State == STAYING_PUT)
 	{
-		if(robot.potentiometer.Get() < distance)
+		if(robot.potentiometer.Get() < Current)
 		{
 			State = GOING_UP; //move up code
 			robot.GrabArmController.Set(.75);
@@ -26,7 +26,7 @@ bool GrabArm::operator()(Robot& robot)
 	}
 	else if (State == GOING_UP)
 	{
-		if(robot.potentiometer.Get() >= distance)
+		if(robot.potentiometer.Get() >= Current)
 		{
 			robot.GrabArmController.Set(0);
 			State = STAYING_PUT;
@@ -35,7 +35,7 @@ bool GrabArm::operator()(Robot& robot)
 	}
 	else if (State == GOING_DOWN)
 	{
-		if(robot.potentiometer.Get() <= distance)
+		if(robot.potentiometer.Get() <= Current)
 		{
 			robot.GrabArmController.Set(0);
 			State = STAYING_PUT;

@@ -13,15 +13,15 @@ public:
 		STAYING_PUT
 	} State;
 
-	GrabArm(float GrabArmDistance);
+	GrabArm(float GrabArmCurrent);
 	virtual ~GrabArm(){}
 	virtual bool operator()(Robot& robot);
 	void start();
 	void stop();
 	void printValues();
-	//encoder.SetDistancePerPulse(LIFT_CONST);
+	//encoder.SetCurrentPerPulse(LIFT_CONST);
 
 private:
-	float distance;
+	float Current;
 
 };
