@@ -3,7 +3,6 @@
 #include "WPILib.h"
 #include "RobotBase.h"
 #include "RobotParameters.h"
-#include "SmartDashBoard\Smartdashboard.h"
 
 
 #define GYRO_CHANNEL 0

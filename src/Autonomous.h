@@ -7,7 +7,6 @@
 #include <PIDController.h>
 #include "RobotParameters.h"
 #include "AutonomousAction.h"
-#include "SmartDashBoard\Smartdashboard.h"
 //Want to keep track of time and distance
 
 class Robot;

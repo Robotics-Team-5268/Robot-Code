@@ -25,11 +25,10 @@ Robot::Robot():
 	GrabController_A(GRAB_WHEEL_CONTROLLER_A),
 	GrabController_B(GRAB_WHEEL_CONTROLLER_B),
 	GrabArmController(GRAB_ARM_CHANNEL),
-	potentiometer(GRAB_ARM_POTENTIOMETER_CHANNEL, GRAB_ARM_POTENTIOMETER_RANGE),
 	autonomous(*this), //RENAME VARIABLE!!!!
+	GrabArm_PDP(),
 	currentAction(),
 	counter(0),
-	GrabArm_PDP(),
 	done(true)
 {
 	drive = new MecanumDrive(*this); //Uses left joystick to move forward/backwards and left/right, and uses right stick to rotate/turn left/right
