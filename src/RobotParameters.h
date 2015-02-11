@@ -54,6 +54,9 @@
 //Channel_Output Channel Out_Put UltraSonic
 #define ULTRASONIC_CHANNEL 5
 
+//Power Distribution Panels
+#define GRABARM_POWER_DISTRIBUTION_CHANNEL 4
+
 //Triggers to Axis Rotate
 #define LEFT_TRIGGER (Joystick::AxisType) 2
 #define RIGHT_TRIGGER (Joystick::AxisType) 3

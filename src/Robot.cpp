@@ -29,6 +29,7 @@ Robot::Robot():
 	autonomous(*this), //RENAME VARIABLE!!!!
 	currentAction(),
 	counter(0),
+	GrabArm_PDP(),
 	done(true)
 {
 	drive = new MecanumDrive(*this); //Uses left joystick to move forward/backwards and left/right, and uses right stick to rotate/turn left/right
@@ -83,22 +84,20 @@ void Robot::TeleopPeriodic() {
 	}
 
 	//Arm
-	double armValue = 0;
-	if (armValue <= 10) /*TODO: Arm value max*/  {
+	if (GrabArm_PDP.GetCurrent(GRABARM_POWER_DISTRIBUTION_CHANNEL) <= 3) /*TODO: Arm value max*/  {
 		if(armInPressed && !armOutPressed){
 			GrabArmController.Set(.75);
-			armValue = .75;
 		}
 		else if(!armInPressed && armOutPressed){
 			GrabArmController.Set(-.75);
-			armValue = -.75;
 		}
 		else{
 			GrabArmController.Set(0);
-			armValue = 0;
 		}
 	}
-
+	else{
+		GrabArmController.Set(0);
+	}
 	//Lift
 	if(liftUpPressed && !liftDownPressed){
 		liftController.Set(.75);

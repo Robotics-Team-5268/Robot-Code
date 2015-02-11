@@ -7,6 +7,7 @@
 #include "SmartDashBoard\Smartdashboard.h"
 #include "Autonomous.h"
 #include "BuiltInAccelerometer.h"
+#include "PowerDistributionPanel.h"
 
 class Robot: public IterativeRobot {
 public:
@@ -41,6 +42,9 @@ public:
 	//Autonomous
 	Autonomous autonomous;
 
+	//Power Distribution Panel
+	PowerDistributionPanel GrabArm_PDP;
+
 	virtual void RobotInit();
 	virtual void AutonomousInit();
 	virtual void AutonomousPeriodic();
@@ -53,11 +57,9 @@ public:
 	DriveSystem* drive;
 
 	/********* TEST ONLY STUFF *********/
-
 	AutonomousAction* currentAction;
 	int counter;
 	bool done;
-
 	/***********************************/
 
 };
