@@ -1,7 +1,7 @@
 #pragma once
 #include "RobotParameters.h"
 #include "AutonomousAction.h"
-
+#include "PowerDistributionPanel.h"
 
 class GrabArm: public AutonomousAction
 {

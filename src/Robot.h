@@ -37,7 +37,7 @@ public:
 
 	//Grabey Arms
 	Talon GrabArmController;
-	AnalogPotentiometer potentiometer;
+	//AnalogPotentiometer potentiometer;
 
 	//Autonomous
 	Autonomous autonomous;
