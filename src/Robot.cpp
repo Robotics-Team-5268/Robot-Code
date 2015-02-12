@@ -58,34 +58,39 @@ void Robot::TeleopInit() {
 
 void Robot::TeleopPeriodic() {
 	drive->DrivingCode();
-	bool inPressed = stick.GetRawButton(GRAB_WHEEL_BUTTON_IN);
-	bool outPressed = stick.GetRawButton(GRAB_WHEEL_BUTTON_OUT);
-	bool armInPressed = stick.GetRawButton(GRAB_ARM_BUTTON_IN);
-	bool armOutPressed = stick.GetRawButton(GRAB_ARM_BUTTON_OUT);
+
+	bool grabWheelInPressed = stick.GetRawButton(GRAB_WHEEL_BUTTON_IN);
+	bool grabWheelOutPressed = stick.GetRawButton(GRAB_WHEEL_BUTTON_OUT);
+	bool grabArmInPressed = stick.GetRawButton(GRAB_ARM_BUTTON_IN);
+	bool grabArmOutPressed = stick.GetRawButton(GRAB_ARM_BUTTON_OUT);
 	bool liftUpPressed = stick.GetRawButton(LIFT_BUTTON_UP);
 	bool liftDownPressed = stick.GetRawButton(LIFT_BUTTON_DOWN);
 
-	for(int i = 1; i <= stick.GetButtonCount(); i++){
-		char str[20];
-		sprintf(str, "Button %d", i);
-		SmartDashboard::PutBoolean(str, stick.GetRawButton(i));
-	}
-	for(int i = 0; i < stick.GetAxisCount(); i++){
+	if(JOYSTICK_DEBUG){
+		//Axis start at 0 while buttons start at 1
+		for(int i = 1; i <= stick.GetButtonCount(); i++){
+			char str[20];
+			sprintf(str, "Button %d", i);
+			SmartDashboard::PutBoolean(str, stick.GetRawButton(i));
+		}
+		for(int i = 0; i < stick.GetAxisCount(); i++){
 			char str[20];
 			sprintf(str, "Axis %d", i);
 			SmartDashboard::PutNumber(str, stick.GetRawAxis(i));
 		}
+	}
+
 	//Grab Wheels
-	if(inPressed == TRUE && outPressed == FALSE){
+	if(grabWheelInPressed == TRUE && grabWheelOutPressed == FALSE){
 
 		GrabController_A.Set(.75);
 		GrabController_B.Set(-.75);
 	}
-	else if(inPressed == FALSE && outPressed == TRUE){
+	else if(grabWheelInPressed == FALSE && grabWheelOutPressed == TRUE){
 		GrabController_A.Set(-.75);
 		GrabController_B.Set(.75);
 	}
-	else if(inPressed && outPressed){
+	else if(grabWheelInPressed && grabWheelOutPressed){
 		GrabController_A.Set(-.75);
 		GrabController_B.Set(-.75);
 	}
@@ -96,10 +101,10 @@ void Robot::TeleopPeriodic() {
 
 	//Arm
 	//if (GrabArm_PDP.GetCurrent(GRABARM_POWER_DISTRIBUTION_CHANNEL) <= 3) /*TODO: Arm value max*/  {
-		if(armInPressed && !armOutPressed){
+		if(grabArmInPressed && !grabArmOutPressed){
 			GrabArmController.Set(.75);
 		}
-		else if(!armInPressed && armOutPressed){
+		else if(!grabArmInPressed && grabArmOutPressed){
 			GrabArmController.Set(-.75);
 		}
 		else{
@@ -130,9 +135,9 @@ void Robot::TestInit() {
 	sc.AddObject("Rotate", (AutonomousAction::AATypes*) (AutonomousAction::AATypes::ROTATE));
 	sc.AddObject("Lift", (AutonomousAction::AATypes*) (AutonomousAction::AATypes::LIFT));
 
+	SmartDashboard::PutString("Autonomous State", "None");
 	SmartDashboard::PutData("Autonomous Action", &sc);
 	SmartDashboard::PutNumber("Parameter", 0.0);
-	SmartDashboard::PutBoolean("Ready", done);
 }
 
 void Robot::TestPeriodic() {
@@ -151,7 +156,7 @@ void Robot::TestPeriodic() {
 			if(type == NULL){
 				currentAction = NULL;
 				done = true;
-				SmartDashboard::PutBoolean("Ready", done);
+				SmartDashboard::PutString("Autonomous State", "None");
 				return;
 			}
 
@@ -171,7 +176,7 @@ void Robot::TestPeriodic() {
 				}
 
 				done = false;
-				SmartDashboard::PutBoolean("Ready", done);
+				SmartDashboard::PutString("Autonomous State", AutonomousAction::AANames[(*type)]);
 			}
 		}
 	}else{//We have an action so lets update the action

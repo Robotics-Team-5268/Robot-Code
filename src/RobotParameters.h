@@ -7,6 +7,8 @@
 
 #define GYRO_CHANNEL 0
 #define JOYSTICK_CHANNEL 0
+#define JOYSTICK_AXIS_THRESHOLD .05
+#define JOYSTICK_DEBUG false
 #define LIFT_POTENTIOMETER_CHANNEL 1
 
 //0: Left front, 1: Right front, 2: Left back, 3: Right back
@@ -14,6 +16,8 @@
 #define DRIVE_CONTROLLER_1_CHANNEL 1
 #define DRIVE_CONTROLLER_2_CHANNEL 6
 #define DRIVE_CONTROLLER_3_CHANNEL 7
+
+#define ROTATE_SCALE_FACTOR .5
 
 //Motor Controls
 #define LIFT_MOTOR_CHANNEL 5
