@@ -111,10 +111,10 @@ void Robot::TeleopPeriodic() {
 	//}
 	//Lift
 	if(liftUpPressed && !liftDownPressed){
-		liftController.Set(.2);
+		liftController.Set(1);
 	}
 	else if(!liftUpPressed && liftDownPressed){
-		liftController.Set(-.2);
+		liftController.Set(-1);
 	}
 	else{
 		liftController.Set(0);

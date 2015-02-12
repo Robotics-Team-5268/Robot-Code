@@ -19,7 +19,8 @@ MecanumDrive::~MecanumDrive(){
 
 void MecanumDrive::DrivingCode() {
 	float rotateAmnt = robot.stick.GetRawAxis(RIGHT_TRIGGER) + (robot.stick.GetRawAxis(LEFT_TRIGGER) * -1);
-  drive.MecanumDrive_Cartesian(robot.stick.GetX(), robot.stick.GetY(), rotateAmnt, robot.gyro.GetAngle());
+
+	drive.MecanumDrive_Cartesian(robot.stick.GetX(), robot.stick.GetY(), rotateAmnt, robot.gyro.GetAngle());
 }
 
 void MecanumDrive::rotate(float pidOutput) {
