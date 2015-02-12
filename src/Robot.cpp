@@ -52,6 +52,7 @@ void Robot::AutonomousPeriodic() {
 }
 
 void Robot::TeleopInit() {
+
 	gyro.Reset();
 }
 
@@ -64,8 +65,19 @@ void Robot::TeleopPeriodic() {
 	bool liftUpPressed = stick.GetRawButton(LIFT_BUTTON_UP);
 	bool liftDownPressed = stick.GetRawButton(LIFT_BUTTON_DOWN);
 
+	for(int i = 1; i <= stick.GetButtonCount(); i++){
+		char str[20];
+		sprintf(str, "Button %d", i);
+		SmartDashboard::PutBoolean(str, stick.GetRawButton(i));
+	}
+	for(int i = 0; i < stick.GetAxisCount(); i++){
+			char str[20];
+			sprintf(str, "Axis %d", i);
+			SmartDashboard::PutNumber(str, stick.GetRawAxis(i));
+		}
 	//Grab Wheels
 	if(inPressed == TRUE && outPressed == FALSE){
+
 		GrabController_A.Set(.75);
 		GrabController_B.Set(-.75);
 	}
@@ -83,7 +95,7 @@ void Robot::TeleopPeriodic() {
 	}
 
 	//Arm
-	if (GrabArm_PDP.GetCurrent(GRABARM_POWER_DISTRIBUTION_CHANNEL) <= 3) /*TODO: Arm value max*/  {
+	//if (GrabArm_PDP.GetCurrent(GRABARM_POWER_DISTRIBUTION_CHANNEL) <= 3) /*TODO: Arm value max*/  {
 		if(armInPressed && !armOutPressed){
 			GrabArmController.Set(.75);
 		}
@@ -93,16 +105,16 @@ void Robot::TeleopPeriodic() {
 		else{
 			GrabArmController.Set(0);
 		}
-	}
-	else{
-		GrabArmController.Set(0);
-	}
+	//}
+	//else{
+	//	GrabArmController.Set(0);
+	//}
 	//Lift
 	if(liftUpPressed && !liftDownPressed){
-		liftController.Set(.75);
+		liftController.Set(.2);
 	}
 	else if(!liftUpPressed && liftDownPressed){
-		liftController.Set(-.75);
+		liftController.Set(-.2);
 	}
 	else{
 		liftController.Set(0);

@@ -6,17 +6,19 @@ MecanumDrive::MecanumDrive(Robot &robotRef):
 robot(robotRef),
 drive(robot.driveControllerZero, robot.driveControllerOne, robot.driveControllerTwo, robot.driveControllerThree)
 {
-	drive.SetInvertedMotor(RobotDrive::MotorType::kFrontRightMotor, true);
+	drive.SetSafetyEnabled(false);
+	drive.SetExpiration(0.1);
+	drive.SetInvertedMotor(RobotDrive::MotorType::kFrontRightMotor, false);
 	drive.SetInvertedMotor(RobotDrive::MotorType::kFrontLeftMotor, false);
 	drive.SetInvertedMotor(RobotDrive::MotorType::kRearRightMotor, true);
-	drive.SetInvertedMotor(RobotDrive::MotorType::kRearLeftMotor, false);
+	drive.SetInvertedMotor(RobotDrive::MotorType::kRearLeftMotor, true);
 }
 
 MecanumDrive::~MecanumDrive(){
 }
 
 void MecanumDrive::DrivingCode() {
-	float rotateAmnt = robot.stick.GetAxis(RIGHT_TRIGGER) + (robot.stick.GetAxis(LEFT_TRIGGER) * -1);
+	float rotateAmnt = robot.stick.GetRawAxis(RIGHT_TRIGGER) + (robot.stick.GetRawAxis(LEFT_TRIGGER) * -1);
   drive.MecanumDrive_Cartesian(robot.stick.GetX(), robot.stick.GetY(), rotateAmnt, robot.gyro.GetAngle());
 }
 

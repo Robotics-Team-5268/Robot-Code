@@ -34,10 +34,10 @@
 
 #define USING_LIMIT_SWITCH TRUE
 
-#define GRAB_ARM_BUTTON_IN 1
-#define GRAB_WHEEL_BUTTON_IN 2
-#define GRAB_WHEEL_BUTTON_OUT 3
-#define GRAB_ARM_BUTTON_OUT 4
+#define GRAB_ARM_BUTTON_IN 4
+#define GRAB_WHEEL_BUTTON_IN 1
+#define GRAB_WHEEL_BUTTON_OUT 2
+#define GRAB_ARM_BUTTON_OUT 3
 #define LIFT_BUTTON_DOWN 5
 #define LIFT_BUTTON_UP 6
 
@@ -57,8 +57,8 @@
 #define GRABARM_POWER_DISTRIBUTION_CHANNEL 4
 
 //Triggers to Axis Rotate
-#define LEFT_TRIGGER (Joystick::AxisType) 2
-#define RIGHT_TRIGGER (Joystick::AxisType) 3
+#define LEFT_TRIGGER 2
+#define RIGHT_TRIGGER 3
 /*
 #define GATE_BUTTON 5 //LB top trigger
 #define GATE_SOLENOID_ONE 8
