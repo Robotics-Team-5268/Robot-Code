@@ -18,12 +18,12 @@ bool Lift::operator()(Robot& robot)
 		if(potentiometer.Get() < distance)
 		{
 			State = GOING_UP; //move up code
-			robot.liftController.Set(.75);
+			robot.liftController.Set(.2);
 		}
 		else
 		{
 		    State = GOING_DOWN;//move down code
-		    robot.liftController.Set(-.75);
+		    robot.liftController.Set(-.2);
 		}
 	}
 	else if (State == GOING_UP)

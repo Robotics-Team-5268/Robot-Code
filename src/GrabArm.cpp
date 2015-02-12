@@ -13,7 +13,7 @@ bool GrabArm::operator()(Robot& robot)
 {
 	if(State == STAYING_PUT)
 	{
-		if(robot.GrabArm_PDP.GetCurrent(GRABARM_POWER_DISTRIBUTION_CHANNEL) < Current)
+		if(robot.GrabArm_PDP.GetCurrent(GRABARM_POWER_DISTRIBUTION_CHANNEL) >= Current)
 		{
 			State = GOING_UP; //move up code
 			robot.GrabArmController.Set(.75);
