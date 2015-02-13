@@ -58,3 +58,4 @@ void GrabArm::stop()
 void GrabArm::printValues(){
 	SmartDashboard::PutString("GrabArm.State", State == GOING_UP ? "Going Up" : State == GOING_DOWN ? "Going Down" : "Staying Put");
 }
+

@@ -11,17 +11,20 @@ static const std::string strgyro("GYRO_CHANNEL");
 bool AorM; //1 (true) Arcade and 0 (false) Mecanum
 
 //TODO: see README.md
-
+//0 all the way down, 1 all the way up
 Robot::Robot():
 	gyro(GYRO_CHANNEL),
 	acclrmtr(BuiltInAccelerometer::Range::kRange_8G),
-	ultrasonic(ULTRASONIC_CHANNEL),
+	//ultrasonic(ULTRASONIC_CHANNEL),
 	stick(JOYSTICK_CHANNEL),
 	driveControllerZero(DRIVE_CONTROLLER_0_CHANNEL),
 	driveControllerOne(DRIVE_CONTROLLER_1_CHANNEL),
 	driveControllerTwo(DRIVE_CONTROLLER_2_CHANNEL),
 	driveControllerThree(DRIVE_CONTROLLER_3_CHANNEL),//replace any numbers with channel from RobotParameters
-	liftController(LIFT_MOTOR_CHANNEL),
+	liftController_A(LIFT_MOTOR_CHANNEL_A),
+	liftController_B(LIFT_MOTOR_CHANNEL_B),
+	//liftHighLimit(LIFT_HIGH_LIMIT_CHANNEL),//Error
+	//liftLowLimit(LIFT_LOW_LIMIT_CHANNEL),//Error
 	GrabController_A(GRAB_WHEEL_CONTROLLER_A),
 	GrabController_B(GRAB_WHEEL_CONTROLLER_B),
 	GrabArmController(GRAB_ARM_CHANNEL),
@@ -29,7 +32,7 @@ Robot::Robot():
 	GrabArm_PDP(),
 	currentAction(),
 	counter(0),
-	done(true)
+	done(false)
 {
 	drive = new MecanumDrive(*this); //Uses left joystick to move forward/backwards and left/right, and uses right stick to rotate/turn left/right
 	//drive = new ArcadeDrive(this); //Uses left joystick to move forwards/backwards and rotate/turn left/right
@@ -65,6 +68,8 @@ void Robot::TeleopPeriodic() {
 	bool grabArmOutPressed = stick.GetRawButton(GRAB_ARM_BUTTON_OUT);
 	bool liftUpPressed = stick.GetRawButton(LIFT_BUTTON_UP);
 	bool liftDownPressed = stick.GetRawButton(LIFT_BUTTON_DOWN);
+	//bool canLiftUp = !liftHighLimit->Get();
+	//bool canLiftDown = !liftLowLimit->Get();
 
 	if(JOYSTICK_DEBUG){
 		//Axis start at 0 while buttons start at 1
@@ -80,19 +85,20 @@ void Robot::TeleopPeriodic() {
 		}
 	}
 
+
 	//Grab Wheels
 	if(grabWheelInPressed == TRUE && grabWheelOutPressed == FALSE){
 
-		GrabController_A.Set(.75);
-		GrabController_B.Set(-.75);
+		GrabController_A.Set(GRAB_WHEEL_SPEED);
+		GrabController_B.Set(-GRAB_WHEEL_SPEED);
 	}
 	else if(grabWheelInPressed == FALSE && grabWheelOutPressed == TRUE){
-		GrabController_A.Set(-.75);
-		GrabController_B.Set(.75);
+		GrabController_A.Set(-GRAB_WHEEL_SPEED);
+		GrabController_B.Set(GRAB_WHEEL_SPEED);
 	}
 	else if(grabWheelInPressed && grabWheelOutPressed){
-		GrabController_A.Set(-.75);
-		GrabController_B.Set(-.75);
+		GrabController_A.Set(-GRAB_WHEEL_SPEED);
+		GrabController_B.Set(-GRAB_WHEEL_SPEED);
 	}
 	else{
 		GrabController_A.Set(0);
@@ -102,10 +108,10 @@ void Robot::TeleopPeriodic() {
 	//Arm
 	//if (GrabArm_PDP.GetCurrent(GRABARM_POWER_DISTRIBUTION_CHANNEL) <= 3) /*TODO: Arm value max*/  {
 		if(grabArmInPressed && !grabArmOutPressed){
-			GrabArmController.Set(.75);
+			GrabArmController.Set(GRAB_ARM_SPEED);
 		}
 		else if(!grabArmInPressed && grabArmOutPressed){
-			GrabArmController.Set(-.75);
+			GrabArmController.Set(-GRAB_ARM_SPEED);
 		}
 		else{
 			GrabArmController.Set(0);
@@ -115,14 +121,17 @@ void Robot::TeleopPeriodic() {
 	//	GrabArmController.Set(0);
 	//}
 	//Lift
-	if(liftUpPressed && !liftDownPressed){
-		liftController.Set(1);
+	if(liftUpPressed && !liftDownPressed /*&& canLiftUp*/){//DOing something wrong with canLiftUp
+		liftController_A.Set(LIFT_UP_SPEED);
+		liftController_B.Set(LIFT_UP_SPEED);
 	}
-	else if(!liftUpPressed && liftDownPressed){
-		liftController.Set(-1);
+	else if(!liftUpPressed && liftDownPressed /*&& canLiftDown*/){//Doing something wrong with canLiftDown
+		liftController_A.Set(LIFT_DOWN_SPEED);
+		liftController_B.Set(LIFT_DOWN_SPEED);
 	}
 	else{
-		liftController.Set(0);
+		liftController_A.Set(0);
+		liftController_B.Set(0);
 	}
 	SmartDashboard::PutData(strgyro, &gyro);
 }
@@ -171,12 +180,12 @@ void Robot::TestPeriodic() {
 					currentAction = new Rotate(para);
 					break;
 				case AutonomousAction::AATypes::LIFT:
-					currentAction = new Lift(para);
+					//currentAction = new Lift(para);
 					break;
 				}
 
 				done = false;
-				SmartDashboard::PutString("Autonomous State", AutonomousAction::AANames[(*type)]);
+				//SmartDashboard::PutString("Autonomous State", AutonomousAction::AANames[(*type)]);
 			}
 		}
 	}else{//We have an action so lets update the action

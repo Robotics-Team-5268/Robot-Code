@@ -8,10 +8,10 @@ drive(robot.driveControllerZero, robot.driveControllerOne, robot.driveController
 {
 	drive.SetSafetyEnabled(false);
 	drive.SetExpiration(0.1);
-	drive.SetInvertedMotor(RobotDrive::MotorType::kFrontRightMotor, false);
+	drive.SetInvertedMotor(RobotDrive::MotorType::kFrontRightMotor, true);
 	drive.SetInvertedMotor(RobotDrive::MotorType::kFrontLeftMotor, false);
 	drive.SetInvertedMotor(RobotDrive::MotorType::kRearRightMotor, true);
-	drive.SetInvertedMotor(RobotDrive::MotorType::kRearLeftMotor, true);
+	drive.SetInvertedMotor(RobotDrive::MotorType::kRearLeftMotor, false);
 }
 
 MecanumDrive::~MecanumDrive(){

@@ -15,7 +15,7 @@ public:
 	Gyro gyro;
 	BuiltInAccelerometer acclrmtr;
 
-	AnalogOutput ultrasonic;
+	//AnalogOutput ultrasonic;
 
 	//Left: left joystick on controller, Right: right stick
 	Joystick stick;
@@ -28,14 +28,17 @@ public:
 	Talon driveControllerThree;
 
 	//Lifter 1 or 2 motors
-	Talon liftController;
+	Talon liftController_A;
+	Talon liftController_B;
+	//DigitalInput* liftHighLimit;
+	//DigitalInput* liftLowLimit;
 
 	//Grabey Wheels
-	Talon GrabController_A;
-	Talon GrabController_B;
+	Victor GrabController_A;
+	Victor GrabController_B;
 
 	//Grabey Arms
-	Talon GrabArmController;
+	Victor GrabArmController;
 	//AnalogPotentiometer potentiometer;
 
 	//Autonomous

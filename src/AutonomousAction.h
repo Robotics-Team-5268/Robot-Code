@@ -7,11 +7,11 @@ class Robot;
 
 class AutonomousAction {
 public:
-	static std::string AANames[] = {
+	/*static std::string AANames[] = {
 		"Move",
 		"Rotate",
 		"Lift"
-	};
+	};*/
 
 	virtual ~AutonomousAction() {
 	}

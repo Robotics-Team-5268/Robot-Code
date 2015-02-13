@@ -18,19 +18,22 @@ bool Lift::operator()(Robot& robot)
 		if(potentiometer.Get() < distance)
 		{
 			State = GOING_UP; //move up code
-			robot.liftController.Set(.2);
+			robot.liftController_A.Set(.2);
+			robot.liftController_B.Set(-.2);
 		}
 		else
 		{
 		    State = GOING_DOWN;//move down code
-		    robot.liftController.Set(-.2);
+		    robot.liftController_A.Set(-.2);
+		    robot.liftController_B.Set(.2);
 		}
 	}
 	else if (State == GOING_UP)
 	{
 		if(potentiometer.Get() >= distance)
 		{
-			robot.liftController.Set(0);
+			robot.liftController_A.Set(0);
+			robot.liftController_B.Set(0);
 			State = STAYING_PUT;
 			return true;
 		}
@@ -39,7 +42,8 @@ bool Lift::operator()(Robot& robot)
 	{
 		if(potentiometer.Get() <= distance)
 		{
-			robot.liftController.Set(0);
+			robot.liftController_A.Set(0);
+			robot.liftController_B.Set(0);
 			State = STAYING_PUT;
 			return true;
 		}
