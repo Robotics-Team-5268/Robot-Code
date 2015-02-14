@@ -10,6 +10,7 @@ public:
 	virtual bool operator()(Robot& robot);
 	void start(Robot& robot);
 	void stop(Robot& robot);
+	void zero();
 	void copyValues();
 	void printValues();
 

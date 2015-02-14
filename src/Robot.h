@@ -14,6 +14,7 @@ public:
 
 	Gyro gyro;
 	BuiltInAccelerometer acclrmtr;
+	double accel_offset_x, accel_offset_y;
 
 	//AnalogOutput ultrasonic;
 
@@ -30,15 +31,8 @@ public:
 	//Lifter 1 or 2 motors
 	Talon liftController_A;
 	Talon liftController_B;
-
 	DigitalInput liftHighLimit;
 	DigitalInput liftLowLimit;
-
-
-
-	/*** Limit Switches ***/
-	DigitalInput GrabArmOut;
-	DigitalInput GrabArmIn;
 
 	//Grabey Wheels
 	Victor GrabController_A;

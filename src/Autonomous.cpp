@@ -20,10 +20,7 @@ Autonomous::Autonomous(Robot &robotRef) :
 	hypDist(0),
 	actions
 	{
-		new Lift(10.0),
-		new Rotate(0.0),
-		new GrabWheel(1, -4),
-		new Move(0.0)
+		new Move(1.0)
 	}
 
 {

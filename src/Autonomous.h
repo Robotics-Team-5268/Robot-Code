@@ -65,7 +65,7 @@ private:
 	double yDist;
 	double hypDist;
 
-	AutonomousAction* actions[4];
+	AutonomousAction* actions[1];
 
 };
 

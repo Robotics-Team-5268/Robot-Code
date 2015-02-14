@@ -32,8 +32,8 @@ bool Move::operator()(Robot& robot) {
 	// Acceleration is the change in velocity per second
 	// Acceleration = G_Fore * Gravity
 	// Scale the acceleration to handle being called every AUTONOMOUS_PERIOD of a second
-	x_accel = robot.acclrmtr.GetX() * GRAVITY * AUTONOMOUS_PERIOD;
-	y_accel = robot.acclrmtr.GetY() * GRAVITY * AUTONOMOUS_PERIOD;
+	x_accel = (robot.acclrmtr.GetX() - robot.accel_offset_x) * GRAVITY * AUTONOMOUS_PERIOD;
+	y_accel = (robot.acclrmtr.GetY() - robot.accel_offset_y) * GRAVITY * AUTONOMOUS_PERIOD;
 
 	// Velocity is the change in position per second
 	x_vel = last_x_vel + ((last_x_accel + x_accel) / 2) * AUTONOMOUS_PERIOD;
@@ -47,18 +47,16 @@ bool Move::operator()(Robot& robot) {
 	finished = robot.autonomous.PIDmove.OnTarget();
 
 	counter++;
-    if(counter == 50)
+    if(counter == 10)
     {
-	    SmartDashboard::PutNumber("x", x);
-	    SmartDashboard::PutNumber("y", y);
-	    SmartDashboard::PutNumber("x_vel", x_vel);
-	    SmartDashboard::PutNumber("y_vel", y_vel);
-	    SmartDashboard::PutNumber("x_accel", x_accel);
-	    SmartDashboard::PutNumber("y_accel", y_accel);
+	    printValues();
+	    SmartDashboard::PutNumber("AccelX", robot.acclrmtr.GetX());
+	    SmartDashboard::PutNumber("AccelY", robot.acclrmtr.GetY());
 	    counter = 0;
     }
 
     if(finished){
+    	robot.drive->move(0);
     	stop(robot);
     }else{
     	float value = robot.autonomous.moveOut.GetValue();
@@ -74,12 +72,16 @@ bool Move::operator()(Robot& robot) {
 void Move::start(Robot& robot){
 	started = true;
 
+	zero();
+
 	robot.autonomous.PIDmove.SetSetpoint(abs(move));
 	robot.autonomous.PIDmove.Enable();
 }
 
 void Move::stop(Robot& robot){
 	started = false;
+
+	zero();
 
 	robot.autonomous.PIDmove.Reset(); //Disables the PID
 }
@@ -91,6 +93,21 @@ void Move::copyValues(){
 	last_y_vel = y_vel;
 	last_x = x;
 	last_y = y;
+}
+
+void Move::zero(){
+	last_x_accel = 0;
+	last_y_accel = 0;
+	last_x_vel = 0;
+	last_y_vel = 0;
+	last_x = 0;
+	last_y = 0;
+	x_accel = 0;
+	y_accel = 0;
+	x_vel = 0;
+	y_vel = 0;
+	x = 0;
+	y = 0;
 }
 
 void Move::printValues(){

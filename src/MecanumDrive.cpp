@@ -19,18 +19,18 @@ MecanumDrive::~MecanumDrive(){
 
 void MecanumDrive::DrivingCode() {
 	float rotateAmnt = (robot.stick.GetRawAxis(RIGHT_TRIGGER) - robot.stick.GetRawAxis(LEFT_TRIGGER)) * ROTATE_SCALE_FACTOR;
-	float x = robot.stick.GetX();
-	float y = robot.stick.GetY();
+	float x = robot.stick.GetX() * .75;
+	float y = robot.stick.GetY() * .75;
 
-	if(x < JOYSTICK_AXIS_THRESHOLD){
+	if(fabs(x) < JOYSTICK_AXIS_THRESHOLD){
 		x = 0;
 	}
 
-	if(y < JOYSTICK_AXIS_THRESHOLD){
+	if(fabs(y) < JOYSTICK_AXIS_THRESHOLD){
 		y = 0;
 	}
 
-	drive.MecanumDrive_Cartesian(x, y, rotateAmnt, robot.gyro.GetAngle());
+	drive.MecanumDrive_Cartesian(x, y, rotateAmnt /*robot.gyro.GetAngle()*/);
 }
 
 void MecanumDrive::rotate(float pidOutput) {

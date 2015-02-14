@@ -8,8 +8,6 @@ class GrabWheel: public AutonomousAction
 {
 
 	public:
-		Talon GrabController_A;
-		Talon GrabController_B;
 
 		GrabWheel(bool SameDirection, float SpinTime);
 		enum
