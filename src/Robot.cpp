@@ -34,6 +34,7 @@ Robot::Robot():
 	GrabArm_PDP(),
 	currentAction(),
 	counter(0),
+	GrabArmCounter(0),
 	done(false)
 {
 	drive = new MecanumDrive(*this); //Uses left joystick to move forward/backwards and left/right, and uses right stick to rotate/turn left/right
@@ -93,7 +94,6 @@ void Robot::TeleopPeriodic() {
 
 	//Grab Wheels
 	if(grabWheelInPressed == TRUE && grabWheelOutPressed == FALSE){
-
 		GrabController_A.Set(GRAB_WHEEL_SPEED);
 		GrabController_B.Set(-GRAB_WHEEL_SPEED);
 	}
@@ -112,11 +112,17 @@ void Robot::TeleopPeriodic() {
 
 	//Arm
 	//if (GrabArm_PDP.GetCurrent(GRABARM_POWER_DISTRIBUTION_CHANNEL) <= 3) /*TODO: Arm value max*/  {
-		if(grabArmInPressed && !grabArmOutPressed){
+	if(grabArmInPressed)
+	{
+		GrabArmCounter = 0;
+	}
+		if(grabArmInPressed && !GrabArmIn.Get() && GrabArmCounter <= 100){
 			GrabArmController.Set(GRAB_ARM_SPEED);
+			GrabArmCounter++;
 		}
-		else if(!grabArmInPressed && grabArmOutPressed){
+		else if(!grabArmInPressed && !GrabArmOut.Get() && GrabArmCounter <= 100){
 			GrabArmController.Set(-GRAB_ARM_SPEED);
+			GrabArmCounter++;
 		}
 		else{
 			GrabArmController.Set(0);

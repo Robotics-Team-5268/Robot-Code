@@ -63,6 +63,7 @@ public:
 	AutonomousAction* currentAction;
 	int counter;
 	bool done;
+	int GrabArmCounter;
 	/***********************************/
 
 };
