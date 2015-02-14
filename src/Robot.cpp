@@ -30,6 +30,8 @@ Robot::Robot():
 	GrabController_A(GRAB_WHEEL_CONTROLLER_A),
 	GrabController_B(GRAB_WHEEL_CONTROLLER_B),
 	GrabArmController(GRAB_ARM_CHANNEL),
+	GrabArmIn(GRAB_ARM_LIMIT_SWITCH_IN_CHANNEL),
+	GrabArmOut(GRAB_ARM_LIMIT_SWITCH_OUT_CHANNEL),
 	autonomous(*this), //RENAME VARIABLE!!!!
 	GrabArm_PDP(),
 	currentAction(),

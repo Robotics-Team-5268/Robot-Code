@@ -40,7 +40,10 @@ public:
 
 	//Grabey Arms
 	Victor GrabArmController;
+	DigitalInput GrabArmIn;
+	DigitalInput GrabArmOut;
 	//AnalogPotentiometer potentiometer;
+
 
 	//Autonomous
 	Autonomous autonomous;
