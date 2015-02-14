@@ -30,8 +30,8 @@ public:
 	//Lifter 1 or 2 motors
 	Talon liftController_A;
 	Talon liftController_B;
-	//DigitalInput* liftHighLimit;
-	//DigitalInput* liftLowLimit;
+	DigitalInput liftHighLimit;
+	DigitalInput liftLowLimit;
 
 	//Grabey Wheels
 	Victor GrabController_A;

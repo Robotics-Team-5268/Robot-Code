@@ -23,8 +23,8 @@ Robot::Robot():
 	driveControllerThree(DRIVE_CONTROLLER_3_CHANNEL),//replace any numbers with channel from RobotParameters
 	liftController_A(LIFT_MOTOR_CHANNEL_A),
 	liftController_B(LIFT_MOTOR_CHANNEL_B),
-	//liftHighLimit(LIFT_HIGH_LIMIT_CHANNEL),//Error
-	//liftLowLimit(LIFT_LOW_LIMIT_CHANNEL),//Error
+	liftHighLimit(LIFT_HIGH_LIMIT_CHANNEL),//Error
+	liftLowLimit(LIFT_LOW_LIMIT_CHANNEL),//Error
 	GrabController_A(GRAB_WHEEL_CONTROLLER_A),
 	GrabController_B(GRAB_WHEEL_CONTROLLER_B),
 	GrabArmController(GRAB_ARM_CHANNEL),
@@ -68,8 +68,8 @@ void Robot::TeleopPeriodic() {
 	bool grabArmOutPressed = stick.GetRawButton(GRAB_ARM_BUTTON_OUT);
 	bool liftUpPressed = stick.GetRawButton(LIFT_BUTTON_UP);
 	bool liftDownPressed = stick.GetRawButton(LIFT_BUTTON_DOWN);
-	//bool canLiftUp = !liftHighLimit->Get();
-	//bool canLiftDown = !liftLowLimit->Get();
+	bool canLiftUp = !liftHighLimit.Get();
+	bool canLiftDown = !liftLowLimit.Get();
 
 	if(JOYSTICK_DEBUG){
 		//Axis start at 0 while buttons start at 1
@@ -121,11 +121,11 @@ void Robot::TeleopPeriodic() {
 	//	GrabArmController.Set(0);
 	//}
 	//Lift
-	if(liftUpPressed && !liftDownPressed /*&& canLiftUp*/){//DOing something wrong with canLiftUp
+	if(liftUpPressed && !liftDownPressed && canLiftUp){//Doing something wrong with canLiftUp
 		liftController_A.Set(LIFT_UP_SPEED);
 		liftController_B.Set(LIFT_UP_SPEED);
 	}
-	else if(!liftUpPressed && liftDownPressed /*&& canLiftDown*/){//Doing something wrong with canLiftDown
+	else if(!liftUpPressed && liftDownPressed && canLiftDown){//Doing something wrong with canLiftDown
 		liftController_A.Set(LIFT_DOWN_SPEED);
 		liftController_B.Set(LIFT_DOWN_SPEED);
 	}
