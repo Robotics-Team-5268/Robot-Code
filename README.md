@@ -1,29 +1,22 @@
 TODO:
-* Axis camera
-   * Find distance based on image
-   * drive up to box with reflective tape
-* Accelerometer
-* Gyro
+* Accelerometer -
+* Gyro -
    * define gyro channel -
    * define gyro -
 * autonomous
    * State machines
    * Create functions:
-      * Move(float distance) - Tyler Schunk
-      * Rotate(int degree) - Jeremiah Miller
-      * Pickup() - Not enough info
-      * Drop() - Not enough info
-      * FindTote() - Vision processing people
-   * save point
-   * coordinate with other teams for strategy
-   * gyro
-   * accelerometer
-   * ultrasonic distance
-   * camera - Ben, Micheal, everyone who doesn't have a job
+      * Move(float distance) -
+      * Rotate(int degree) -
+      * Pickup() -
+      * Drop() -
+   * coordinate with other teams for strategy -
+   * gyro -
+   * accelerometer -
 * teleop
-   * 2 solenoids
-   * 2 front motors to pull in junk
-   * 1 actuator
+   * lift -
+      * Limit switches -
+   * grab arms -
    * driving -
    * joystick -
    * Mecanum -
