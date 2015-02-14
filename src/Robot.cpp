@@ -10,6 +10,7 @@
 static const std::string strgyro("GYRO_CHANNEL");
 bool AorM; //1 (true) Arcade and 0 (false) Mecanum
 
+
 //TODO: see README.md
 //0 all the way down, 1 all the way up
 Robot::Robot():
@@ -25,11 +26,14 @@ Robot::Robot():
 	liftController_B(LIFT_MOTOR_CHANNEL_B),
 	liftHighLimit(LIFT_HIGH_LIMIT_CHANNEL),//Error
 	liftLowLimit(LIFT_LOW_LIMIT_CHANNEL),//Error
+	GrabArmOut(GRAB_ARM_LIMIT_SWITCH_OUT_CHANNEL),
+	GrabArmIn(GRAB_ARM_LIMIT_SWITCH_IN_CHANNEL),
 	GrabController_A(GRAB_WHEEL_CONTROLLER_A),
 	GrabController_B(GRAB_WHEEL_CONTROLLER_B),
 	GrabArmController(GRAB_ARM_CHANNEL),
 	autonomous(*this), //RENAME VARIABLE!!!!
 	GrabArm_PDP(),
+
 	currentAction(),
 	counter(0),
 	done(false)
@@ -65,7 +69,6 @@ void Robot::TeleopPeriodic() {
 	bool grabWheelInPressed = stick.GetRawButton(GRAB_WHEEL_BUTTON_IN);
 	bool grabWheelOutPressed = stick.GetRawButton(GRAB_WHEEL_BUTTON_OUT);
 	bool grabArmInPressed = stick.GetRawButton(GRAB_ARM_BUTTON_IN);
-	bool grabArmOutPressed = stick.GetRawButton(GRAB_ARM_BUTTON_OUT);
 	bool liftUpPressed = stick.GetRawButton(LIFT_BUTTON_UP);
 	bool liftDownPressed = stick.GetRawButton(LIFT_BUTTON_DOWN);
 	bool canLiftUp = !liftHighLimit.Get();
@@ -107,10 +110,10 @@ void Robot::TeleopPeriodic() {
 
 	//Arm
 	//if (GrabArm_PDP.GetCurrent(GRABARM_POWER_DISTRIBUTION_CHANNEL) <= 3) /*TODO: Arm value max*/  {
-		if(grabArmInPressed && !grabArmOutPressed){
+		if(grabArmInPressed && !GrabArmIn.Get()){
 			GrabArmController.Set(GRAB_ARM_SPEED);
 		}
-		else if(!grabArmInPressed && grabArmOutPressed){
+		else if(!grabArmInPressed && !GrabArmOut.Get()){
 			GrabArmController.Set(-GRAB_ARM_SPEED);
 		}
 		else{
