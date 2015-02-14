@@ -26,6 +26,8 @@
 #define DRIVE_CONTROLLER_3_CHANNEL 4
 
 #define ROTATE_SCALE_FACTOR .5
+#define DRIVE_FAST_SCALE_FACTOR .75
+#define DRIVE_SLOW_SCALE_FACTOR .25
 
 //Motor Controls
 #define LIFT_MOTOR_CHANNEL_A 5
@@ -68,9 +70,17 @@
 //Power Distribution Panels
 #define GRABARM_POWER_DISTRIBUTION_CHANNEL 4
 
+//Left joystick
+#define LEFT_JOYSTICK_X_AXIS 0
+#define LEFT_JOYSTICK_Y_AXIS 1
+
 //Triggers to Axis Rotate
 #define LEFT_TRIGGER 2
 #define RIGHT_TRIGGER 3
+
+//Right joystick
+#define RIGHT_JOYSTICK_X_AXIS 4
+#define RIGHT_JOYSTICK_Y_AXIS 5
 /*
 #define GATE_BUTTON 5 //LB top trigger
 #define GATE_SOLENOID_ONE 8
