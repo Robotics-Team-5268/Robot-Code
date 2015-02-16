@@ -19,8 +19,11 @@ MecanumDrive::~MecanumDrive(){
 
 void MecanumDrive::DrivingCode() {
 	float rotateAmnt = (robot.stick.GetRawAxis(RIGHT_TRIGGER) - robot.stick.GetRawAxis(LEFT_TRIGGER)) * ROTATE_SCALE_FACTOR;
-	float x = robot.stick.GetX() * .75;
-	float y = robot.stick.GetY() * .75;
+	float x = robot.stick.GetRawAxis(LEFT_JOYSTICK_X_AXIS);
+	float y = robot.stick.GetRawAxis(LEFT_JOYSTICK_Y_AXIS);
+
+	float slow_x = robot.stick.GetRawAxis(RIGHT_JOYSTICK_X_AXIS);
+	float slow_y = robot.stick.GetRawAxis(RIGHT_JOYSTICK_Y_AXIS);
 
 	if(fabs(x) < JOYSTICK_AXIS_THRESHOLD){
 		x = 0;
@@ -30,7 +33,21 @@ void MecanumDrive::DrivingCode() {
 		y = 0;
 	}
 
-	drive.MecanumDrive_Cartesian(x, y, rotateAmnt /*robot.gyro.GetAngle()*/);
+	if(fabs(slow_x) < JOYSTICK_AXIS_THRESHOLD){
+		slow_x = 0;
+	}
+
+	if(fabs(slow_y) < JOYSTICK_AXIS_THRESHOLD){
+		slow_y = 0;
+	}
+
+	x *= DRIVE_FAST_SCALE_FACTOR;
+	y *= DRIVE_FAST_SCALE_FACTOR;
+
+	slow_x *= DRIVE_SLOW_SCALE_FACTOR;
+	slow_y *= DRIVE_SLOW_SCALE_FACTOR;
+
+	drive.MecanumDrive_Cartesian(x + slow_x, y + slow_y, rotateAmnt /*robot.gyro.GetAngle()*/);
 }
 
 void MecanumDrive::rotate(float pidOutput) {
