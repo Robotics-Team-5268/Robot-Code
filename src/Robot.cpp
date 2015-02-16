@@ -36,9 +36,11 @@ Robot::Robot():
 	GrabArm_PDP(),
 	currentAction(),
 	counter(0),
+	done(false),
 	GrabArmCounter(0),
-	done(false)
-{
+	HitTheTop(0),
+	HitTheBottom(0)
+	{
 	drive = new MecanumDrive(*this); //Uses left joystick to move forward/backwards and left/right, and uses right stick to rotate/turn left/right
 	//drive = new ArcadeDrive(this); //Uses left joystick to move forwards/backwards and rotate/turn left/right
 
@@ -63,6 +65,14 @@ void Robot::AutonomousPeriodic() {
 }
 
 void Robot::TeleopInit() {
+	if(GrabArmOut.Get() == TRUE)
+	{
+		HitTheTop = TRUE;
+	}
+	if(GrabArmIn.Get() == TRUE)
+	{
+		HitTheBottom = TRUE;
+	}
 
 	gyro.Reset();
 }
@@ -73,7 +83,6 @@ void Robot::TeleopPeriodic() {
 	bool grabWheelInPressed = stick.GetRawButton(GRAB_WHEEL_BUTTON_IN);
 	bool grabWheelOutPressed = stick.GetRawButton(GRAB_WHEEL_BUTTON_OUT);
 	bool grabArmInPressed = stick.GetRawButton(GRAB_ARM_BUTTON_IN);
-	bool grabArmOutPressed = stick.GetRawButton(GRAB_ARM_BUTTON_OUT);
 	bool liftUpPressed = stick.GetRawButton(LIFT_BUTTON_UP);
 	bool liftDownPressed = stick.GetRawButton(LIFT_BUTTON_DOWN);
 	bool canLiftUp = !liftHighLimit.Get();
@@ -114,17 +123,31 @@ void Robot::TeleopPeriodic() {
 
 	//Arm
 	//if (GrabArm_PDP.GetCurrent(GRABARM_POWER_DISTRIBUTION_CHANNEL) <= 3) /*TODO: Arm value max*/  {
-	if(grabArmInPressed)
-	{
-		GrabArmCounter = 0;
-	}
-		if(grabArmInPressed && !GrabArmIn.Get() && GrabArmCounter <= 100){
+		if(grabArmInPressed == TRUE && GrabArmIn.Get() == FALSE && (GrabArmCounter <= 100 || HitTheBottom == 1) )
+		{
 			GrabArmController.Set(GRAB_ARM_SPEED);
 			GrabArmCounter++;
+			if(GrabArmCounter == 100)
+			{
+				HitTheTop = 1;
+			}
+			else
+			{
+				HitTheTop = 0;
+			}
 		}
-		else if(!grabArmInPressed && !GrabArmOut.Get() && GrabArmCounter <= 100){
+		else if(!grabArmInPressed && !GrabArmOut.Get() && (GrabArmCounter >= 0 || HitTheTop == 1) )
+		{
 			GrabArmController.Set(-GRAB_ARM_SPEED);
-			GrabArmCounter++;
+			GrabArmCounter--;
+			if(GrabArmCounter == 0)
+			{
+				HitTheBottom = 1;
+			}
+			else
+			{
+				HitTheBottom = 0;
+			}
 		}
 		else{
 			GrabArmController.Set(0);

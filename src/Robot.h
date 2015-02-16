@@ -67,6 +67,8 @@ public:
 	int counter;
 	bool done;
 	int GrabArmCounter;
+	bool HitTheTop;      /* Hit the top and hit the bottom are checks so that if they hit the max on the counter, */
+	bool HitTheBottom;   /* 		     They can still have the ability to go the other direction.				  */
 	/***********************************/
 
 };
