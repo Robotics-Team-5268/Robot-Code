@@ -13,7 +13,7 @@ public:
 		STAYING_PUT
 	} State;
 
-	GrabArm(float GrabArmCurrent);
+	GrabArm(bool UpOrDown);
 	virtual ~GrabArm(){}
 	virtual bool operator()(Robot& robot);
 	void start();
@@ -22,6 +22,5 @@ public:
 	//encoder.SetCurrentPerPulse(LIFT_CONST);
 
 private:
-	float Current;
 
 };

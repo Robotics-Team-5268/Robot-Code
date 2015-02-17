@@ -11,10 +11,10 @@ Autonomous::Autonomous(Robot &robotRef) :
 	robot(robotRef),
 	//Gyro
 	gyroOut(),
-	PIDgyro(0.1, 0.001, 0.0, &robot.gyro, &gyroOut), //possibly need to change the numbers
+	PIDgyro(0.1, 0.0, 0.0, &robot.gyro, &gyroOut), //possibly need to change the numbers
 	moveIn(),
 	moveOut(),
-	PIDmove(0.1, 0.001, 0.0, &moveIn, &moveOut),
+	PIDmove(0.5, 0.0, 0.0, &moveIn, &moveOut),
 	xDist(0),
 	yDist(0),
 	hypDist(0),
@@ -27,6 +27,7 @@ Autonomous::Autonomous(Robot &robotRef) :
 	PIDgyro.SetOutputRange(-1.0, 1.0);
 	PIDmove.SetInputRange(-1.0, 1.0);
 	PIDmove.SetOutputRange(-1.0, 1.0);
+	PIDmove.SetContinuous(false);
 }
 
 void Autonomous::autonomousPeriodic(void)

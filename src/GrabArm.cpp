@@ -2,16 +2,15 @@
 #include "RobotParameters.h"
 #include "Robot.h"
 
-GrabArm::GrabArm(float GrabArmCurrent):
-State(STAYING_PUT),
-Current(GrabArmCurrent)
+GrabArm::GrabArm(bool UpOrDown):
+State(STAYING_PUT)
 {
 
 }
 
 bool GrabArm::operator()(Robot& robot)
 {
-	if(State == STAYING_PUT)
+	/*if(State == STAYING_PUT)
 	{
 		if(robot.GrabArm_PDP.GetCurrent(GRABARM_POWER_DISTRIBUTION_CHANNEL) >= Current)
 		{
@@ -42,7 +41,7 @@ bool GrabArm::operator()(Robot& robot)
 			return true;
 		}
 	}
-	return false;
+	return false;*/
 }
 
 void GrabArm::start()

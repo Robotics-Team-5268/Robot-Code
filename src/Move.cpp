@@ -32,16 +32,16 @@ bool Move::operator()(Robot& robot) {
 	// Acceleration is the change in velocity per second
 	// Acceleration = G_Fore * Gravity
 	// Scale the acceleration to handle being called every AUTONOMOUS_PERIOD of a second
-	x_accel = (robot.acclrmtr.GetX() - robot.accel_offset_x) * GRAVITY * AUTONOMOUS_PERIOD;
-	y_accel = (robot.acclrmtr.GetY() - robot.accel_offset_y) * GRAVITY * AUTONOMOUS_PERIOD;
+	x_accel = (robot.acclrmtr.GetX() - robot.accel_offset_x) * GRAVITY;
+	y_accel = (robot.acclrmtr.GetY() - robot.accel_offset_y) * GRAVITY;
 
 	// Velocity is the change in position per second
-	x_vel = last_x_vel + ((last_x_accel + x_accel) / 2) * AUTONOMOUS_PERIOD;
-	y_vel = last_y_vel + ((last_y_accel + y_accel) / 2) * AUTONOMOUS_PERIOD;
+	x_vel = last_x_vel + x_accel * AUTONOMOUS_PERIOD;
+	y_vel = last_y_vel + y_accel * AUTONOMOUS_PERIOD;
 
 
-	x = last_x + last_x_vel * AUTONOMOUS_PERIOD + .5 * last_x_accel * AUTONOMOUS_PERIOD * AUTONOMOUS_PERIOD;
-	y = last_y + last_y_vel * AUTONOMOUS_PERIOD + .5 * last_y_accel * AUTONOMOUS_PERIOD * AUTONOMOUS_PERIOD;
+	x = last_x + x_vel * AUTONOMOUS_PERIOD;
+	y = last_y + y_vel * AUTONOMOUS_PERIOD;
 
 	robot.autonomous.moveIn.SetValue(sqrt(x * x + y * y));
 	finished = robot.autonomous.PIDmove.OnTarget();
@@ -60,7 +60,7 @@ bool Move::operator()(Robot& robot) {
     	stop(robot);
     }else{
     	float value = robot.autonomous.moveOut.GetValue();
-    	value *= move > 0 ? 1 : -1;
+    	//value *= move > 0 ? 1 : -1;
     	robot.drive->move(value);
     }
 
@@ -74,7 +74,7 @@ void Move::start(Robot& robot){
 
 	zero();
 
-	robot.autonomous.PIDmove.SetSetpoint(abs(move));
+	robot.autonomous.PIDmove.SetSetpoint(move > 0 ? 1 : -1);
 	robot.autonomous.PIDmove.Enable();
 }
 

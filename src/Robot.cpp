@@ -14,7 +14,7 @@ static const std::string strgyro("GYRO_CHANNEL");
 //0 all the way down, 1 all the way up
 Robot::Robot():
 	gyro(GYRO_CHANNEL),
-	acclrmtr(BuiltInAccelerometer::Range::kRange_8G),
+	acclrmtr(BuiltInAccelerometer::Range::kRange_2G),
 	accel_offset_x(0),
 	accel_offset_y(0),
 	//ultrasonic(ULTRASONIC_CHANNEL),
@@ -65,11 +65,11 @@ void Robot::AutonomousPeriodic() {
 }
 
 void Robot::TeleopInit() {
-	if(GrabArmOut.Get() == TRUE)
+	if(!GrabArmOut.Get())
 	{
 		HitTheTop = TRUE;
 	}
-	if(GrabArmIn.Get() == TRUE)
+	if(!GrabArmIn.Get())
 	{
 		HitTheBottom = TRUE;
 	}
@@ -102,6 +102,11 @@ void Robot::TeleopPeriodic() {
 		}
 	}
 
+	SmartDashboard::PutBoolean("GrabArmInPressed", grabArmInPressed);
+
+	SmartDashboard::PutBoolean("GrabArmOut", GrabArmOut.Get());
+	SmartDashboard::PutBoolean("GrabArmIn", GrabArmIn.Get());
+
 
 	//Grab Wheels
 	if(grabWheelInPressed == TRUE && grabWheelOutPressed == FALSE){
@@ -120,10 +125,10 @@ void Robot::TeleopPeriodic() {
 		GrabController_A.Set(0);
 		GrabController_B.Set(0);
 	}
-
+	/*
 	//Arm
-	//if (GrabArm_PDP.GetCurrent(GRABARM_POWER_DISTRIBUTION_CHANNEL) <= 3) /*TODO: Arm value max*/  {
-		if(grabArmInPressed == TRUE && GrabArmIn.Get() == FALSE && (GrabArmCounter <= 100 || HitTheBottom == 1) )
+	//if (GrabArm_PDP.GetCurrent(GRABARM_POWER_DISTRIBUTION_CHANNEL) <= 3) TODO: Arm value max  {
+		if(grabArmInPressed == TRUE && GrabArmIn.Get() Limit switches are wrong && (GrabArmCounter <= 100 || HitTheBottom == 1) )
 		{
 			GrabArmController.Set(GRAB_ARM_SPEED);
 			GrabArmCounter++;
@@ -136,7 +141,7 @@ void Robot::TeleopPeriodic() {
 				HitTheTop = 0;
 			}
 		}
-		else if(!grabArmInPressed && !GrabArmOut.Get() && (GrabArmCounter >= 0 || HitTheTop == 1) )
+		else if(!grabArmInPressed == TRUE && GrabArmOut.Get() == TRUE && (GrabArmCounter >= 0 || HitTheTop == 1) )
 		{
 			GrabArmController.Set(-GRAB_ARM_SPEED);
 			GrabArmCounter--;
@@ -156,6 +161,7 @@ void Robot::TeleopPeriodic() {
 	//else{
 	//	GrabArmController.Set(0);
 	//}
+	 */
 	//Lift
 	if(liftUpPressed && !liftDownPressed && canLiftUp){//Doing something wrong with canLiftUp
 		liftController_A.Set(LIFT_UP_SPEED);

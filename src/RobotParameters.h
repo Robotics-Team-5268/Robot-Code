@@ -34,7 +34,7 @@
 #define LIFT_MOTOR_CHANNEL_B 8
 #define LIFT_HIGH_LIMIT_CHANNEL 0
 #define LIFT_LOW_LIMIT_CHANNEL 1
-#define LIFT_UP_SPEED -.5
+#define LIFT_UP_SPEED -.6
 #define LIFT_DOWN_SPEED .3
 
 #define LIFT_CONST .0278
@@ -46,8 +46,8 @@
 #define GRAB_ARM_POTENTIOMETER_RANGE 4
 #define GRAB_ARM_SPEED .75
 #define GRAB_ARM_CHANNEL 6
-#define GRAB_ARM_LIMIT_SWITCH_IN_CHANNEL 2
-#define GRAB_ARM_LIMIT_SWITCH_OUT_CHANNEL 3
+#define GRAB_ARM_LIMIT_SWITCH_IN_CHANNEL 3
+#define GRAB_ARM_LIMIT_SWITCH_OUT_CHANNEL 2
 
 //Grabey Wheels
 #define GRAB_WHEEL_CONTROLLER_A 7
@@ -60,8 +60,8 @@
 #define ENCODER_ARM_B_CHANNEL 17//Arm Lift Encoder
 //-----------------------------------------
 
-#define GRAVITY 9.81 //  m / (s^2)
-#define AUTONOMOUS_PERIOD 1/50  // 50 times a second
+#define GRAVITY 9.80665 //  m / (s^2)
+#define AUTONOMOUS_PERIOD 0.02  // 50 times a second
 #define MS_PER_PERIOD 20 //(better than ^) 20 Milliseconds in a period
 
 //Channel_Output Channel Out_Put UltraSonic
