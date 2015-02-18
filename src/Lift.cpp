@@ -2,7 +2,7 @@
 #include "RobotParameters.h"
 #include "Robot.h"
 
-Lift::Lift(State s, float ltime):
+Lift::Lift(State s, int ltime):
 state(s),
 LiftTime(ltime),
 counter(0)
@@ -15,7 +15,7 @@ bool Lift::operator()(Robot& robot)
 {
 	if(state == GOING_UP)
 	{
-		if(robot.liftHighLimit.Get())
+		if(robot.liftHighLimit.Get() || counter == LiftTime)
 		{
 			robot.liftController_A.Set(0);
 			robot.liftController_B.Set(0);
@@ -30,7 +30,7 @@ bool Lift::operator()(Robot& robot)
 	}
 	else if(state == GOING_DOWN)
 	{
-		if(robot.liftLowLimit.Get())
+		if(robot.liftLowLimit.Get() || counter == LiftTime)
 		{
 			robot.liftController_A.Set(0);
 			robot.liftController_B.Set(0);
@@ -42,7 +42,9 @@ bool Lift::operator()(Robot& robot)
 			robot.liftController_B.Set(LIFT_DOWN_SPEED);
 		}
 	}
+	counter++;
 	return false;
+
 }
 
 void Lift::start()

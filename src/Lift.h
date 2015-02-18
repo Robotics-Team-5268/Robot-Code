@@ -12,7 +12,7 @@ public:
 		GOING_DOWN
 	};
 
-	Lift(State s, float ltime);
+	Lift(State s, int ltime);
 	virtual ~Lift(){}
 	virtual bool operator()(Robot& robot);
 	void start();

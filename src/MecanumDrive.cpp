@@ -51,9 +51,9 @@ void MecanumDrive::DrivingCode() {
 }
 
 void MecanumDrive::rotate(float pidOutput) {
-  drive.MecanumDrive_Cartesian(0, 0, pidOutput, robot.gyro.GetAngle());
+  drive.MecanumDrive_Cartesian(0, 0, pidOutput);
 }
 void MecanumDrive::move(float pidOutput)
 {
-	drive.MecanumDrive_Cartesian(0, pidOutput, 0, robot.gyro.GetAngle());
+	drive.MecanumDrive_Cartesian(0, pidOutput, 0);
 }
