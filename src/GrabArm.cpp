@@ -2,46 +2,50 @@
 #include "RobotParameters.h"
 #include "Robot.h"
 
-GrabArm::GrabArm(bool UpOrDown):
-State(STAYING_PUT)
+GrabArm::GrabArm(float itime):
+State(STAYING_PUT),
+InputTime(itime)
 {
 
 }
 
 bool GrabArm::operator()(Robot& robot)
 {
-	/*if(State == STAYING_PUT)
+	if(State == STAYING_PUT)
 	{
-		if(robot.GrabArm_PDP.GetCurrent(GRABARM_POWER_DISTRIBUTION_CHANNEL) >= Current)
+		if(robot.GrabArmIn.Get())
 		{
-			State = GOING_UP; //move up code
-			robot.GrabArmController.Set(.75);
+			State = GOING_IN; //move up code
+			robot.GrabArmController.Set(-.2);
 		}
-		else
+
+	}
+	else if (State == GOING_IN)
+	{
+		if(!robot.GrabArmIn.Get())
 		{
-		    State = GOING_DOWN;//move down code
-		    robot.GrabArmController.Set(-.75);
+			robot.GrabArmController.Set(0);
+			if(counter == InputTime)
+			{
+			State = GOING_OUT;
+			robot.GrabArmController.Set(-.2);
+			}
+			else
+			{
+				counter++;
+			}
 		}
 	}
-	else if (State == GOING_UP)
+	else if (State == GOING_OUT)
 	{
-		if(robot.GrabArm_PDP.GetCurrent(GRABARM_POWER_DISTRIBUTION_CHANNEL) >= Current)
+		if(robot.GrabArmOut.Get())
 		{
 			robot.GrabArmController.Set(0);
 			State = STAYING_PUT;
 			return true;
 		}
 	}
-	else if (State == GOING_DOWN)
-	{
-		if(robot.GrabArm_PDP.GetCurrent(GRABARM_POWER_DISTRIBUTION_CHANNEL) <= Current)
-		{
-			robot.GrabArmController.Set(0);
-			State = STAYING_PUT;
-			return true;
-		}
-	}
-	return false;*/
+	return false;
 }
 
 void GrabArm::start()
@@ -55,6 +59,6 @@ void GrabArm::stop()
 }
 
 void GrabArm::printValues(){
-	SmartDashboard::PutString("GrabArm.State", State == GOING_UP ? "Going Up" : State == GOING_DOWN ? "Going Down" : "Staying Put");
+	SmartDashboard::PutString("GrabArm.State", State == GOING_IN ? "Going In" : State == GOING_OUT ? "Going Out" : "Staying Put");
 }
 

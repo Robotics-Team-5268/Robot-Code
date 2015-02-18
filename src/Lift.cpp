@@ -2,10 +2,10 @@
 #include "RobotParameters.h"
 #include "Robot.h"
 
-Lift::Lift(float liftDistance):
-State(STAYING_PUT),
-potentiometer(LIFT_POTENTIOMETER_CHANNEL, 48),
-distance(liftDistance)
+Lift::Lift(State s, float ltime):
+state(s),
+LiftTime(ltime),
+counter(0)
 {
 
 }
@@ -13,39 +13,33 @@ distance(liftDistance)
 
 bool Lift::operator()(Robot& robot)
 {
-	if(State == STAYING_PUT)
+	if(state == GOING_UP)
 	{
-		if(potentiometer.Get() < distance)
+		if(robot.liftHighLimit.Get())
 		{
-			State = GOING_UP; //move up code
-			robot.liftController_A.Set(.2);
-			robot.liftController_B.Set(-.2);
+			robot.liftController_A.Set(0);
+			robot.liftController_B.Set(0);
+			return true;
+
 		}
 		else
 		{
-		    State = GOING_DOWN;//move down code
-		    robot.liftController_A.Set(-.2);
-		    robot.liftController_B.Set(.2);
+			robot.liftController_A.Set(LIFT_UP_SPEED);
+			robot.liftController_B.Set(LIFT_UP_SPEED);
 		}
 	}
-	else if (State == GOING_UP)
+	else if(state == GOING_DOWN)
 	{
-		if(potentiometer.Get() >= distance)
+		if(robot.liftLowLimit.Get())
 		{
 			robot.liftController_A.Set(0);
 			robot.liftController_B.Set(0);
-			State = STAYING_PUT;
 			return true;
 		}
-	}
-	else if (State == GOING_DOWN)
-	{
-		if(potentiometer.Get() <= distance)
+		else
 		{
-			robot.liftController_A.Set(0);
-			robot.liftController_B.Set(0);
-			State = STAYING_PUT;
-			return true;
+			robot.liftController_A.Set(LIFT_DOWN_SPEED);
+			robot.liftController_B.Set(LIFT_DOWN_SPEED);
 		}
 	}
 	return false;
@@ -62,7 +56,7 @@ void Lift::stop()
 }
 
 void Lift::printValues(){
-	SmartDashboard::PutString("Lift.State", State == GOING_UP ? "Going Up" : State == GOING_DOWN ? "Going Down" : "Staying Put");
+	//SmartDashboard::PutString("Lift.State", State == GOING_UP ? "Going Up" : State == GOING_DOWN ? "Going Down" : "Staying Put");
 }
 
 

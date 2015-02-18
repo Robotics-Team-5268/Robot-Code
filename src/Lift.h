@@ -6,16 +6,13 @@
 class Lift: public AutonomousAction
 {
 public:
-	enum
+	enum State
 	{
 		GOING_UP,
-		GOING_DOWN,
-		STAYING_PUT
-	} State;
+		GOING_DOWN
+	};
 
-	AnalogPotentiometer potentiometer;
-
-	Lift(float liftDistance);
+	Lift(State s, float ltime);
 	virtual ~Lift(){}
 	virtual bool operator()(Robot& robot);
 	void start();
@@ -24,6 +21,8 @@ public:
 	//encoder.SetDistancePerPulse(LIFT_CONST);
 
 private:
-	float distance;
+	State state;
+	float LiftTime;
+	float counter;
 
 };

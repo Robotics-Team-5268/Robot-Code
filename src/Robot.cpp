@@ -105,7 +105,9 @@ void Robot::TeleopPeriodic() {
 	SmartDashboard::PutBoolean("GrabArmInPressed", grabArmInPressed);
 
 	SmartDashboard::PutBoolean("GrabArmOut", GrabArmOut.Get());
-	SmartDashboard::PutBoolean("GrabArmIn", GrabArmIn.Get());
+	SmartDashboard::PutBoolean("GrabArmIn", !GrabArmIn.Get());
+	SmartDashboard::PutBoolean("Lift High Limit", liftHighLimit.Get());
+	SmartDashboard::PutBoolean("Lift Low Limit", liftLowLimit.Get());
 
 
 	//Grab Wheels
@@ -125,10 +127,10 @@ void Robot::TeleopPeriodic() {
 		GrabController_A.Set(0);
 		GrabController_B.Set(0);
 	}
-	/*
+
 	//Arm
 	//if (GrabArm_PDP.GetCurrent(GRABARM_POWER_DISTRIBUTION_CHANNEL) <= 3) TODO: Arm value max  {
-		if(grabArmInPressed == TRUE && GrabArmIn.Get() Limit switches are wrong && (GrabArmCounter <= 100 || HitTheBottom == 1) )
+		if(grabArmInPressed == TRUE && GrabArmIn.Get() /*&& (GrabArmCounter <= 100 || HitTheBottom == 1) */)
 		{
 			GrabArmController.Set(GRAB_ARM_SPEED);
 			GrabArmCounter++;
@@ -141,7 +143,7 @@ void Robot::TeleopPeriodic() {
 				HitTheTop = 0;
 			}
 		}
-		else if(!grabArmInPressed == TRUE && GrabArmOut.Get() == TRUE && (GrabArmCounter >= 0 || HitTheTop == 1) )
+		else if(!grabArmInPressed == TRUE && !GrabArmOut.Get()/* && (GrabArmCounter >= 0 || HitTheTop == 1) */)
 		{
 			GrabArmController.Set(-GRAB_ARM_SPEED);
 			GrabArmCounter--;
@@ -161,7 +163,7 @@ void Robot::TeleopPeriodic() {
 	//else{
 	//	GrabArmController.Set(0);
 	//}
-	 */
+
 	//Lift
 	if(liftUpPressed && !liftDownPressed && canLiftUp){//Doing something wrong with canLiftUp
 		liftController_A.Set(LIFT_UP_SPEED);
