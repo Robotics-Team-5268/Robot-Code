@@ -13,6 +13,7 @@ public:
 	void zero();
 	void copyValues();
 	void printValues();
+	double scaleValue(double pidOut);
 
 private:
 	float move;
